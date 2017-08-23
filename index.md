@@ -12,6 +12,6 @@
 
 3. Lab: Friday 1:10PM - 3PM or 3:10-5PM in Hewitt 301.
 
-4. [Syllabus](Syllabus.md)
+4. [Syllabus](syllabus.md)
 
 5. Lecture Materials.
