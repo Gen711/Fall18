@@ -6,7 +6,7 @@
     - Email: <mailto:Matthew.MacManes@unh.edu>
     - Office hours: Tues/Fri 8-9AM in 189 Rudman, or by appt. Schedule at [http://genomebio.org/office-hours/](http://genomebio.org/office-hours/)
 
-1. [Slack](https://gen711f16.slack.com/)
+1. [Slack](https://gen711f17.slack.com/)
 
 2. Lecture: MWF 11:10-12:00PM Rudman G89
 
