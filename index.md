@@ -15,5 +15,6 @@
 4. Lab Materials
     - *Week 0* Sign up for an XSEDE account [here](https://www.xsede.org/web/xup/my-xsede?p_p_id=58&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_58_struts_action=%2Flogin%2Fcreate_account)
     - *Week 0* [Command line bootcamp:](http://rik.smith-unna.com/command_line_bootcamp/) You can (and should) be working on this from you personal laptop.
-    - *Week 1* Log in to [Jetstream](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/17465367/System+Overview)
+    - *Week 1* Log in to [Jetstream](https://use.jetstream-cloud.org/). Here is some [info about it.](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/17465367/System+Overview)
     - *Week 1* [Launch a Jetstream instance](jetstream.md)
+    - **Week1** [Connecting to your Jetstream VM](usingssh.md)
