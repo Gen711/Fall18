@@ -9,22 +9,21 @@ The methods, applications, and implications of genomics - the analysis of whole 
 
 - Office: 189 Rudman Hall
 - Phone: 603-862-4052
-- Email (preferred): Matthew.MacManes@unh.edu
-- Twitter: @MacManes
+- Email: Matthew.MacManes@unh.edu
 - Office hours: Tues/Fri 8-9am in 189 Rudman, or by appt. Just show up, or schedule at [http://genomebio.org/office-hours/](http://genomebio.org/office-hours/)
 
 
-### 2. Contact Information for Dr Raymond Holsapple
+### 2. Contact Information for Jennifer Spillane
 
 - Office: 193 Rudman Hall
-- Email: rh1054@wildcats.edu
-- Office hours: Thursday 10-11AM in 193 Rudman
+- Email: jlh1023@wildcats.unh.edu
+- Office hours: TBA
 
 ### 3. Lecture: MWF 11:10-12:00PM Rudman G89
 ### 4. Lab: Friday Either 1:10-3:00PM or 3:10-5:00PM in Hewitt 301
 ### 5. Web Resources:
 
-- [Slack](https://gen711f16.slack.com/)
+- [Slack](https://gen711f17.slack.com/)
 - Canvas: I will use this site for grades, only!
 - Google: everything you'll learn this semester has been discussed on the internet. Use it!
 - [http://SeqAnswers.com](http://SeqAnswers.com): The forums are really great.
@@ -35,7 +34,7 @@ The methods, applications, and implications of genomics - the analysis of whole 
 
 **Irregular Assignments:** are assigned in class and/or lab, and are meant to enhance your understanding of the material. They are typically ungraded, but doing them will help to improve your grade. Examples may include extra reading, computer work, or other things.
 
-**Reading** is assigned weekly in the form of primary literature. Each student will present a research paper to the class. This paper presentation is meant to be relatively informal, but will increase the depth of your understanding. Each presentation will be ~10 minutes, with a few minutes for questions. Schedule for this is TBD, but expect these to start before the 1st exam. [Folder o' Papers](https://unh.box.com/s/ra6ns2amwgv8eanjbuh2uyb5lbh4op69)
+**Reading** is assigned weekly in the form of primary literature. Each student will present a research paper to the class. This paper presentation is meant to be relatively informal, but will increase the depth of your understanding. Each presentation will be ~10 minutes, with a few minutes for questions. Schedule for this is TBD, but expect these to start before the 1st exam.
 
 **Exams:** There will be 2 exams covering both lecture and lab material. Each will be worth 100 points. The dates for these will be October 7 and November 18. Makeup exams will be permitted only under extreme documented circumstances, or by prior approval (> 1 week) from Prof. MacManes.
 
@@ -45,7 +44,7 @@ The methods, applications, and implications of genomics - the analysis of whole 
 
 ### 7. Materials Needed
 
-**Amazon Web services:** For lab exercises, we will use the Amazon Computer Cloud (EC2). You will need to set up an account during the first lab, and will be given $100 to pay for the analyses you will run this semester. The EC2 interface will work properly in OSX and Linux operating systems. For those of you with Windows computers, you will need to use the OSX computers in the computer lab. Work outside the class can be accomplished after installation of a terminal emulator (MobaXterm is best).
+**XSEDE Account:** For lab exercises, we will use the Jetstream resource. You will need to set up an account during the first lab, and will use this for all lab exercises. The Jetstream interface will work properly in OSX and Linux operating systems. For those of you with Windows computers, you will need to use the OSX computers in the computer lab. Work outside the class can be accomplished after installation of a terminal emulator (MobaXterm is best).
 
 ### 8. Grades
 
