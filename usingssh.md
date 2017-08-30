@@ -41,6 +41,4 @@ ssh -i $HOME/jetkey username@xxx.xxx.xxx.xxx
 
 and hit enter
 
-<img src="pics/eleven.png" class="img-responsive" alt="">
-
-###If you sit at the same computer each time, you *should* not need to make a new key again. 
+###If you sit at the same computer each time, you *should* not need to make a new key again.
