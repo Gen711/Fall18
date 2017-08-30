@@ -12,7 +12,7 @@ ssh-keygen -t rsa -f $HOME/jetkey
 After this is done, some stuff will happen (it will look kinda like a techie picture for you, like a diagonal rabbit head).
 
 ```
-more $HOME/jetkey.pub | pbcopy
+more $HOME/jetkey.pub | cut -d " " -f1-2 | pbcopy
 ```
 
 ## Navigate to the Jetstream page, to settings, by clicking on your user name.
@@ -24,7 +24,7 @@ more $HOME/jetkey.pub | pbcopy
 <img src="pics/thirteen.png" class="img-responsive" alt="">
 
 ## Click "plus sign", enter details
-Name the key "jetkey", and paste in key using `command-v` (I sneakily copied the key, above, using the `pbcopy` command). then click confirm. 
+Name the key "jetkey", and paste in key using `command-v` (I sneakily copied the key, above, using the `pbcopy` command). then click confirm.
 
 <img src="pics/fourteen.png" class="img-responsive" alt="">
 
