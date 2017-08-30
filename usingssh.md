@@ -9,7 +9,7 @@ ssh-keygen -t rsa -f $HOME/jetkey
 ```
 
 ## Something will happen, and it will ask you for a password - this can be simple (like "password").
-After this is done, some stuff will happen.
+After this is done, some stuff will happen (it will look kinda like a techie picture for you, like a diagonal rabbit head).
 
 ```
 more $HOME/jetkey.pub | pbcopy
