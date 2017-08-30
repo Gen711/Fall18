@@ -1,13 +1,8 @@
 Using SSH to connect to your Jetstream instance
 ---
 
-## Copy the IP address
-Wait until the "Status" says active. Tis could be 2-10 minutes.
-This is the number like `123.456.789.012`. This is the address to the computer you are trying to connect to.
 
-<img src="pics/ten.png" class="img-responsive" alt="">
-
-### While you are waiting, go to your terminal and type.
+### Before you launch an instance, go to your terminal and type.
 
 ```
 ssh-keygen -t rsa -f $HOME/jetkey
@@ -32,6 +27,13 @@ more $HOME/jetkey.pub | pbcopy
 Name the key "jetkey", and paste in key using `command-v` (I sneakily copied the key, above, using the `pbcopy` command)
 
 <img src="pics/fourteen.png" class="img-responsive" alt="">
+
+## Now, launch an instance, and copy the IP address
+Wait until the "Status" says active. Tis could be 2-10 minutes.
+This is the number like `123.456.789.012`. This is the address to the computer you are trying to connect to.
+
+<img src="pics/ten.png" class="img-responsive" alt="">
+
 
 ## not back to the terminal app. type
 
