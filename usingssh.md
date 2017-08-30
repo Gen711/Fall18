@@ -24,7 +24,7 @@ more $HOME/jetkey.pub | pbcopy
 <img src="pics/thirteen.png" class="img-responsive" alt="">
 
 ## Click "plus sign", enter details
-Name the key "jetkey", and paste in key using `command-v` (I sneakily copied the key, above, using the `pbcopy` command)
+Name the key "jetkey", and paste in key using `command-v` (I sneakily copied the key, above, using the `pbcopy` command). then click confirm. 
 
 <img src="pics/fourteen.png" class="img-responsive" alt="">
 
