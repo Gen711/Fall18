@@ -165,3 +165,6 @@ beanplot(blast$X3/blast$X2, ll = 0, beanlinewd=-1, frame.plot=F, col="blue", mai
 plot(blast$X3/blast$X2 ~ blast$X6, xlim=c(7e-11, 0), col='red',frame.plot=F, ylab="Percent Aligned", xlab='evalue', main="Evalue vs Percent Aligned")
 
 ```
+
+
+This lab uses code from ANGUS2017: https://angus.readthedocs.io/en/2017/visualizing-blast-scores-with-RStudio.html 
