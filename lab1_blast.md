@@ -28,17 +28,17 @@ sudo apt-get update
 sudo apt-get -y upgrade
 ```
 
-> OK, what are these commands?  `sudo` is the command that tells the computer that we have admin privileges. Try running the commands without the sudo -- it will complain that you don't have admin privileges or something like that. *Careful here, using sudo means that you can do something really bad to your own computer -- like delete everything*, so use with caution. It's not a big worry when using AWS, as this is a virtual machine- fixing your worst mistake is as easy as just terminating the instance and restarting.
+> OK, what are these commands?  `sudo` is the command that tells the computer that we have admin privileges. Try running the commands without the sudo -- it will complain that you don't have admin privileges or something like that. *Careful here, using sudo means that you can do something really bad to your own computer -- like delete everything*, so use with caution. It's not a big worry when using Jetstream, as this is a virtual machine- fixing your worst mistake is as easy as just terminating the instance and restarting.
 
 
 > So now that we have updates the software, lets see how to add new software. Same basic command, but instead of the `update` or `upgrade` command, we're using `install`. EASY!!
 
 ```
-sudo apt-get -y install ruby build-essential mcl python python-pip gdebi-core r-base
+sudo apt-get -y install ruby build-essential python python-pip gdebi-core r-base
 ```
 
 
-> Install LinuxBrew
+> Install LinuxBrew. Linux brew is another package manager, but for scientific software. We will use it basically every week!
 
 ```
 cd
@@ -70,15 +70,15 @@ brew install gcc blast
 
 ## Challenge...
 
->You have just returned from South America, where you captured a rare - never been seen before - desert mouse. You are interested in knowing how it survives, and start by trying to identify the Sodium transport genes, in particular a gene called Scn5a (https://en.wikipedia.org/wiki/Nav1.5). You've just had the animals's transcriptome sequenced, and are about to begin the search!! You *could* use web blast like you've done in the past, but there are 20166 sequences that you need to search and that would take a loooooooong time.
+>You have just returned from South America, where you captured a rare - never been seen before - desert mouse. You are interested in knowing how it survives, and start by trying to identify the Sodium transport genes, in particular a gene called Scn5a (https://en.wikipedia.org/wiki/Nav1.5). You've just had the animals' transcriptome sequenced, and are about to begin the search!! You *could* use web blast like you've done in the past, but there are 20166 new sequences that you need to search and that would take a loooooooong time.
 
->Download the data here:
+>Download the data that you just generated, using this command:
 
 ```
 curl -LO https://s3.amazonaws.com/macmanes_share/transcripts.fasta
 ```
 
->You know that the model organism, the lab mouse, has an excellent genome and you decide to use it to help identify the sodium transport genes in the new animal. Download the data:
+>You know that the model organism, the lab mouse, has an excellent genome, and is probably closely related to the mystery mouse, You decide to use it to help identify the sodium transport genes in the new animal. Download the data:
 
 ```
 curl -LO ftp://ftp.ensembl.org/pub/release-85/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
@@ -113,13 +113,13 @@ less -S blast.out
 grep -i SCN5A blast.out
 ```
 
-## Visualize results...
+## Visualize blast results...
 
 > Download and install RStudio
 
 ```
 wget https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
-sudo gdebi -n rstudio-server-1.0.143-amd64.deb 
+sudo gdebi -n rstudio-server-1.0.143-amd64.deb
 ```
 
 > Find out the web address of your server
@@ -149,8 +149,8 @@ sudo passwd username
 install.packages(c("readr", "beanplot"))
 library(c("readr", "beanplot"))
 
-blast <- read_delim("~/blast.out", "\t", 
-    escape_double = FALSE, col_names = FALSE, 
+blast <- read_delim("~/blast.out", "\t",
+    escape_double = FALSE, col_names = FALSE,
     trim_ws = TRUE)
 
 View(blast)
