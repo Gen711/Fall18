@@ -41,12 +41,6 @@ sudo apt-get -y install ruby build-essential python python-pip gdebi-core r-base
 > Install LinuxBrew. Linux brew is another package manager, but for scientific software. We will use it basically every week!
 
 ```
-cd
-wget https://keybase.io/mpapis/key.asc
-gpg --import key.asc
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
-
-
 sudo mkdir /home/linuxbrew
 sudo chown $USER:$USER /home/linuxbrew
 git clone https://github.com/Linuxbrew/brew.git /home/linuxbrew/.linuxbrew
@@ -118,11 +112,11 @@ grep -i SCN5A blast.out
 > Download and install RStudio
 
 ```
-wget https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
+curl -LO  https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
 sudo gdebi -n rstudio-server-1.0.143-amd64.deb
 ```
 
-> Find out the web address of your server
+> Find out the web address of your server. Paste the web address that comes up on the terminal, in to your browser.
 
 ```
 echo My RStudio Web server is running at: http://$(hostname):8787/
