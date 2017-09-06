@@ -141,7 +141,7 @@ sudo passwd username
 
 ```
 install.packages(c("readr", "beanplot"))
-library(c("readr", "beanplot"))
+library("readr", "beanplot")
 
 blast <- read_delim("~/blast.out", "\t",
     escape_double = FALSE, col_names = FALSE,
