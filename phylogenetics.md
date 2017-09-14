@@ -89,7 +89,7 @@ mafft --reorder --bl 80 --localpair --thread 6 for_alignment.pep > for.tree
 
 > Make a phylogeny
 ```
-raxmlHPC-PTHREADS -f a -m PROTCATBLOSUM62 -T 6 -x 34 -N 100 -n tree -s for.tree -p 35 -o sp|P31269|HXA9_HUMAN
+raxmlHPC-PTHREADS -f a -m PROTGAMMAAUTO -T 6 -x 34 -N 100 -n tree -s for.tree -p 35 -o "sp|P31269|HXA9_HUMAN"
 ```
 
 
