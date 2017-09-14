@@ -19,3 +19,4 @@
     - **Week 1** [Launch a Jetstream instance](jetstream.md)
     - **Week1** [Connecting to your Jetstream VM](usingssh.md)
     - **Week2** [BLAST](lab1_blast.md)
+    - **Week3** [Phylogenetics](phylogenetics.md)
