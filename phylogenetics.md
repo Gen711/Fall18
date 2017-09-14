@@ -36,7 +36,7 @@ sudo apt-get -y upgrade
 
 
 ```
-echo "https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
+echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip gdebi-core r-base
 
