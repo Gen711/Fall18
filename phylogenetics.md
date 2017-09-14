@@ -124,31 +124,25 @@ sudo passwd username
 
 #### in RStudio (not the terminal)
 
->Install packages and read in the results file you just made.
+>Install packages.
 
 ```
 install.packages(c("ape", "ggplot2"))
 source("http://bioconductor.org/biocLite.R")
-biocLite(c("ggtree", "Biostrings")
+biocLite(c("ggtree", "Biostrings"))
 
 library("ape")
 library("Biostrings")
 library("ggplot2")
 library("ggtree")
-
-nwk <- system.file("extdata", "RAxML_bipartitionsBranchLabels.tree", package="ggtree")
-tree <- read.tree(nwk)
-ggtree(tree)
-
-
 ```
 
-> look at the results!!!
+>Read in the results file you just made and look at the results!!!
 
 ```
 tree <- read.raxml("RAxML_bipartitionsBranchLabels.tree")
 ggtree(tree) + geom_label(aes(label=bootstrap, fill=bootstrap)) + geom_tiplab() +
-+     scale_fill_continuous(low='darkgreen', high='red') + ggplot2::xlim(0, 3)
++     scale_fill_continuous(low='darkgreen', high='red') + ggplot2::xlim(0, 4)
 ```
 
 
