@@ -1,7 +1,7 @@
 Lab 3: Make a phylogeny!!!
 --
 
-During this lab, we will acquaint ourselves with the the software package BLAST. Your objectives are:
+During this lab, we will acquaint ourselves with the steps to making a tree. Your objectives are:
 
 
 1. Familiarize yourself with the software, how to execute it, how to visualize results.
@@ -32,6 +32,8 @@ sudo apt-get -y upgrade
 
 
 > So now that we have updates the software, lets see how to add new software. Same basic command, but instead of the `update` or `upgrade` command, we're using `install`. EASY!!
+> the 1st command tells the computer to look in a different place for updated software, this is needed because of R. We need a newer version than is standard.
+
 
 ```
 echo "https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
@@ -56,24 +58,25 @@ brew update
 brew doctor
 ```
 
-> Install gcc (a compiler) and BLAST
+> Install gcc (a compiler), mafft (to do alignment) and raxml (to make the phylogeny)
 
 ```
-brew install gcc mafft raxml R
+brew install gcc mafft raxml
 ```
 
 
->Download the data that you just generated, using this command:
+>Download some data, using this command. The 1st dataset is data is from an unknown species, the 2nd us the UniProt database, which is a well curated set of protein sequences from many different organisms. It's often a good 1st database to use for blast. Look at the 2 datasets using the comment `less`. Are these nucleotides of proteins?
 
 ```
 curl -LO https://s3.amazonaws.com/gen711/dataset1.pep
-```
-
->You know that the model organism, the lab mouse, has an excellent genome, and is probably closely related to the mystery mouse, You decide to use it to help identify the sodium transport genes in the new animal. Download the data:
-
-```
 curl -LO https://s3.amazonaws.com/gen711/uniprot.pep
-grep -A1 'ENSPTRP00000032491\|ENSPTRP00000032494' dataset1.pep > query.pep
+
+```
+
+>In the interest of time, I am having you pull out the HOX genes from the Uniprot database, and 2 unknown sequences. You're goal is to tell me the identity of these unknowns using a tree.
+
+```
+grep --no-group-separator -A1 'ENSPTRP00000032491\|ENSPTRP00000032494' dataset1.pep > query.pep
 grep --no-group-separator -A1 'HXA2_HUMAN\|HXA2_BOVIN\|HXA2_PAPAN\|HXA3_HUMAN\|HXA3_MOUSE\|HXA3_BOVIN\|HXA9_HUMAN' uniprot.pep > results.pep
 cat query.pep results.pep > for_alignment.pep
 ```
@@ -89,11 +92,11 @@ mafft --reorder --bl 80 --localpair --thread 6 for_alignment.pep > for.tree
 
 > Make a phylogeny
 ```
-raxmlHPC-PTHREADS -f a -m PROTGAMMAAUTO -T 6 -x 34 -N 100 -n tree -s for.tree -p 35 -o "sp|P31269|HXA9_HUMAN"
+raxmlHPC-PTHREADS -f a -m PROTGAMMAAUTO -T 6 -x 37644 -N 100 -n tree -s for.tree -p 35 -o "sp|P31269|HXA9_HUMAN"
 ```
 
 
-## Visualize blast results...
+## Visualize the phylogeny...
 
 > Download and install RStudio
 
@@ -117,8 +120,6 @@ sudo passwd username
 >Note that the text will not echo to the screen (because it’s a password!)
 
 >Return to the browser login page and enter your new password. Note this will not change the global XSEDE login info (i.e. it only affects this instance).
-
->Once R is up and running, we’ll give you a quick tour of the RStudio Web interface for those of you who haven’t seen it.
 
 
 #### in RStudio (not the terminal)
