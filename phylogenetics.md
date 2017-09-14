@@ -141,8 +141,9 @@ library("ggtree")
 
 ```
 tree <- read.raxml("RAxML_bipartitionsBranchLabels.tree")
+
 ggtree(tree) + geom_label(aes(label=bootstrap, fill=bootstrap)) + geom_tiplab() +
-+     scale_fill_continuous(low='darkgreen', high='red') + ggplot2::xlim(0, 4)
+scale_fill_continuous(low='darkgreen', high='red') + ggplot2::xlim(0, 4)
 ```
 
 
