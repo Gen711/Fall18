@@ -20,3 +20,4 @@
     - **Week1** [Connecting to your Jetstream VM](usingssh.md)
     - **Week2** [BLAST](lab1_blast.md)
     - **Week3** [Phylogenetics](phylogenetics.md)
+    - **Week4** [HMMER](hmmer.md)
