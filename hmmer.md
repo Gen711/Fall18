@@ -66,7 +66,7 @@ brew install gcc hmmer mafft blast
 ```
 
 
-> You will download the mystery dataset, a dataset that contains only sodium channels, and UNIPROT, a protein reference. Do you remember how to use the `curl` commands?
+> You will download the mystery dataset, a dataset that contains only sodium channels, and UNIPROT, a protein reference. Do you remember how to use the `curl` commands? FYI, I searched for, and downloaded the channel proteins from http://www.orthodb.org.
 
 ```
 curl -LO https://www.dropbox.com/s/tzreecjs5d5cj6l/channels.fasta
@@ -81,6 +81,7 @@ mafft --auto --thread 6 channels.fasta > channels.align.fasta
 ```
 
 > make the HMM using `hmmbuild`, and then search it using `hmmsearch`
+
 ```
 hmmbuild channels.hmm channels.align.fasta
 hmmsearch --cpu 6 -E 1e-5 --domtblout dataset.pfam channels.hmm mystery.fa
