@@ -104,4 +104,4 @@ blastp -db uniprot -max_target_seqs 1 -query maybe-mystery-channels.fasta \
 
 ```
 
-Look at the file, `blast.out`. Are their things in there that are not channel proteins (you might have to google)? Why? What can we do to make the resuls tighter, if needed?
+Look at the file, `blast.out`. Are their things in there that are not channel proteins (you might have to google)? Why? What can we do to make the results more accurate, if needed?
