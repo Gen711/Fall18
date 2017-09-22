@@ -6,7 +6,7 @@ During this lab, we will acquaint ourselves with the the software package HMMER
 
 1. Familiarize yourself with the software, how to execute it, how to visualize results.
 
-2. Regarding your dataset. Characterize a few conserved domains.
+2. Regarding your dataset. Find Channel proteins. Think about how to make a better HMM.
 
 The HMMER manual <a href="ftp://selab.janelia.org/pub/software/hmmer3/3.1b1/Userguide.pdf">ftp://selab.janelia.org/pub/software/hmmer3/3.1b1/Userguide.pdf</a>
 
@@ -37,13 +37,10 @@ sudo apt-get -y upgrade
 
 
 > So now that we have updates the software, lets see how to add new software. Same basic command, but instead of the `update` or `upgrade` command, we're using `install`. EASY!!
-> the 1st command tells the computer to look in a different place for updated software, this is needed because of R. We need a newer version than is standard.
 
 
 ```
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip gdebi-core r-base
+sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip
 ```
 
 
