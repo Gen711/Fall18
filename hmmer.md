@@ -62,84 +62,46 @@ brew update
 brew doctor
 ```
 
-> Install gcc (a compiler) and hmmer (to make the phylogeny)
+> Install gcc (a compiler) and hmmer (to analyze HMMs)
 
 ```
-brew install gcc hmmer tmux
+brew install gcc hmmer tmux mafft blast
 ```
 
 
-> You will download one of the 5 different datasets (use the same dataset). Do you remember how to use the `wget` and `gzip` commands from last week? Also, download Swissprot and Pfam-A
+> You will download the mystery dataset, a dataset that contains only sodium channels, and UNIPROT, a protein reference. Do you remember how to use the `curl` commands?
 
--
+```
+curl -LO https://www.dropbox.com/s/tzreecjs5d5cj6l/channels.fasta
+curl -LO https://www.dropbox.com/s/9kvv4p3x1e3oiju/mystery.fa
+curl -LO ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+```
 
+> we are going to run HMMER to find Channels in our mystery database. To do this, we 1st need to make a HMM, which takes as input, aligned protein sequences. We need to do an alignment of the channels proteins that you just downloaded.
 
-	cd /mnt
+```
+mafft --auto --thread 6 channels.fasta > channels.align.fasta
+```
 
-	#download your dataset
+> make the HMM using `hmmbuild`, and then search it using `hmmsearch`
+```
+hmmbuild channels.hmm channels.align.fasta
+hmmsearch --cpu 6 -E 1e-5 --domtblout dataset.pfam channels.hmm mystery.fa
 
-	https://www.dropbox.com/s/qqeneb6ajn3dt22/mystery.fasta
+> look at `dataset.pfam`
 
-	#download the SwissProt database
+```
+cat dataset.pfam | cut -d " " -f1 | grep ENS | sort | uniq | grep --no-group-separator -A1 -w -f - mystery.fa | tee -a maybe-mystery-channels.fasta
+```
 
-	wget ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+> check to see if the HMM did a good job, by blasting the proteins that HMMscan identified, to the UniProt database.
 
-	#download the Pfam-A database
+```
+makeblastdb -in uniprot_sprot.fasta.gz -out uniprot -dbtype prot
 
-	wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+blastp -db uniprot -max_target_seqs 1 -query maybe-mystery-channels.fasta \
+-outfmt '6 qseqid evalue stitle' -evalue 1e-10 -num_threads 6 -out blast.out
 
+```
 
-> we are going to run HMMER to identify conserved protein domains. This will take a little while, and we'll use `tmux` to allow us to do this in the background, and continue to work on other things.
-
-
-    gzip -d *gz
-    tmux new -s pfam
-    hmmpress Pfam-A.hmm #this is analogous to 'makeblastdb'
-    hmmscan -E 1e-3 --domtblout dataset.pfam --cpu 4 Pfam-A.hmm dataset1.fa
-    ctl-b d
-    top -c #see that hmmscan is running..
-
-
-> the neat thing about HMMER is that it can be used as a replacement for blastP or PSI-blast.
-
-
-    #blastp-like HBB-HUMAN is a Hemoglobin B protein sequence.
-
-    phmmer --domtblout hbb.phmmer -E 1e-5 \
-    /home/ubuntu/hmmer-3.1b1-linux-intel-x86_64/tutorial/HBB_HUMAN \
-    uniprot_sprot.fasta
-
-    #PSI-blast-like
-
-    jackhmmer --domtblout hbb.jackhammer -E 1e-5 \
-    /home/ubuntu/hmmer-3.1b1-linux-intel-x86_64/tutorial/HBB_HUMAN \
-    uniprot_sprot.fasta
-
-    #you can look at the results using `more hmm.phmmer` or `more hmm.jackhmmer`. Try blasting a few of the results using the BLAST web interface.
-
-
-> Now let's look at the Pfam results. This analyses may still be running, but we can look at it while it's still in progress.
-
-
-    more dataset.pfam
-    #There are a bunch of columns in this table - what do they mean?
-
-    #Try to extract all the hits to a specific domain. Google a few domains (column 1) to see if any seem interesting.
-
-    #for instance, find all occurrences of ABC_tran
-    grep ABC_tran dataset.pfam
-
-    #use grep to count the number of matches. Copy this number down.
-
-    grep -c ABC_tran dataset.pfam
-
-    #Find all the contigs that have a ABC_tran domain.
-
-    grep ABC_tran dataset.pfam | awk '{print $4}' | sort | uniq
-
-
-> Just for fun, check on the Pfam search to see what it is doing...
-
-
-    tmux attach -t pfam
-    ctl-b d
+Look at the file, `blast.out`. Are their things in there that are not channel proteins (you might have to google)? Why? What can we do to make the resuls tighter, if needed?
