@@ -85,6 +85,7 @@ mafft --auto --thread 6 channels.fasta > channels.align.fasta
 ```
 hmmbuild channels.hmm channels.align.fasta
 hmmsearch --cpu 6 -E 1e-5 --domtblout dataset.pfam channels.hmm mystery.fa
+```
 
 > look at `dataset.pfam`
 
