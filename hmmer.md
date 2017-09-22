@@ -72,6 +72,7 @@ brew install gcc hmmer mafft blast
 curl -LO https://www.dropbox.com/s/tzreecjs5d5cj6l/channels.fasta
 curl -LO https://www.dropbox.com/s/9kvv4p3x1e3oiju/mystery.fa
 curl -LO ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+gzip -d uniprot_sprot.fasta.gz
 ```
 
 > we are going to run HMMER to find Channels in our mystery database. To do this, we 1st need to make a HMM, which takes as input, aligned protein sequences. We need to do an alignment of the channels proteins that you just downloaded.
@@ -96,7 +97,7 @@ cat dataset.pfam | cut -d " " -f1 | grep ENS | sort | uniq | grep --no-group-sep
 > check to see if the HMM did a good job, by blasting the proteins that HMMscan identified, to the UniProt database.
 
 ```
-makeblastdb -in uniprot_sprot.fasta.gz -out uniprot -dbtype prot
+makeblastdb -in uniprot_sprot.fasta -out uniprot -dbtype prot
 
 blastp -db uniprot -max_target_seqs 1 -query maybe-mystery-channels.fasta \
 -outfmt '6 qseqid evalue stitle' -evalue 1e-10 -num_threads 6 -out blast.out
