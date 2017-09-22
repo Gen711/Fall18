@@ -62,7 +62,7 @@ brew doctor
 > Install gcc (a compiler) and hmmer (to analyze HMMs)
 
 ```
-brew install gcc hmmer tmux mafft blast
+brew install gcc hmmer mafft blast
 ```
 
 
