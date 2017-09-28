@@ -145,7 +145,7 @@ plot the quality scores
 plot(qual30$V4, type="l", col='red', frame.plot = F, ylab='Quality score', xlab='Position in Read')
 lines(qual0$V4, type="l", col='blue')
 lines(qual2$V4, type="l", col='green')
-lines(qual10$V4, type="l", col='green')
+lines(qual10$V4, type="l", col='black')
 ```
 
 
