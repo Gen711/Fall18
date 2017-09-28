@@ -66,10 +66,10 @@ curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 
 ---
 
-> Do 3 different trimming levels - 2, 10, 30. This one is trimming at a Phred score of 30 (BAD!!!) When you run your commands, you'll need to change the numbers in `LEADING:30` `TRAILING:30` `SLIDINGWINDOW:4:30` and `reads.trim.Phred30.fastq` to whatever trimming level you want to use.
+> Do 3 different trimming levels - 2, 10, 30. This one is trimming at a Phred score of 30 (BAD!!!) When you run your commands, you'll need to change the numbers in `LEADING:30` `TRAILING:30` `SLIDINGWINDOW:4:30` and `reads.trim.Phred30.fastq` to whatever trimming level you are using.
 
 
->paste the below lines together as 1 command
+>paste the below lines together as 1 command. you will need to change the numbers and run 2 more times after this 1st time.
 
 ```
 trimmomatic SE -threads 6 \
@@ -82,7 +82,7 @@ TRAILING:30 \
 MINLEN:25
 ```
 
-> After Trimmomatic is done, Run FastQC. You'll have to change the numbers to match the levels you trimmed at.
+> After Trimmomatic is done, Run FastQP.
 
 
 ```
@@ -94,9 +94,9 @@ fastqp -n 500000 reads.trim.Phred30.fastq 2> /dev/null | grep q50 > qual.P30.txt
 
 > Run Jellyfish.
 
-> You'll have to run these commands 4 separate times -
+> You'll have to run these 2 commands 4 additional times -
 > once for each different trimmed dataset, and once for the raw dataset.
-> Change the names of the input and output files..
+> Make sure to Change the names of the input and output files..
 
 ```
 jellyfish count -m 25 -s 200M -t 6 -C -o trim2.jf reads.trim.Phred2.fastq
@@ -108,19 +108,18 @@ jellyfish histo trim2.jf -o trim2.histo
 
 > OPEN RSTUDIO like you have in the past.
 
-Import all 3 histogram datasets: this is the code for importing 1 of them..
+Import all 4 histogram datasets: This is the code for importing 1 of them. If you forget what they are named, use the `ls` command to see the names.
 
 ```
 trim2 <- read.table("trim2.histo", quote="\"")
 ```
-Import all 3 quality files: this is the code for importing 1 of them..
+Import all 4 quality files: this is the code for importing 1 of them. If you forget what they are named, use the `ls` command to see the names.
 
 ```
 qual0 <- read.table("qual.raw.txt", quote="\"")
 ```
 
-Plot: Make sure and change the names to match what you import.
-What does this plot show you??
+Plot: 
 
 
 ```
@@ -148,11 +147,6 @@ lines(qual2$V4, type="l", col='green')
 lines(qual10$V4, type="l", col='black')
 ```
 
-
-
-
-> Look at the FastQC plots across the different trimming levels. Anything surprising?
-
-> What do the analyses of kmer counts tell you?
+> What do the analyses of kmer counts and quality tell you?
 
 ### Terminate your instance
