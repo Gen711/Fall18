@@ -21,3 +21,4 @@
     - **Week2** [BLAST](lab1_blast.md)
     - **Week3** [Phylogenetics](phylogenetics.md)
     - **Week4** [HMMER](hmmer.md)
+    - **Week5** [Trimming fastQ files](trimming.md)
