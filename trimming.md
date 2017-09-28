@@ -44,7 +44,6 @@ sudo apt-get -y upgrade
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip gdebi-core r-base
-
 ```
 
 
@@ -67,7 +66,7 @@ curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 
 ---
 
-> Do 3 different trimming levels between 2 and 40. This one is trimming at a Phred score of 30 (BAD!!!) When you run your commands, you'll need to change the numbers in `LEADING:30` `TRAILING:30` `SLIDINGWINDOW:4:30` and `Pero360B.trim.Phred30.fastq` to whatever trimming level you want to use.
+> Do 3 different trimming levels - 2, 10, 30. This one is trimming at a Phred score of 30 (BAD!!!) When you run your commands, you'll need to change the numbers in `LEADING:30` `TRAILING:30` `SLIDINGWINDOW:4:30` and `reads.trim.Phred30.fastq` to whatever trimming level you want to use.
 
 
 >paste the below lines together as 1 command
@@ -87,7 +86,6 @@ MINLEN:25
 
 
 ```
-cd $HOME
 fastqp 1.subsamp_1.fastq 2> /dev/null | grep q50 > qual.raw.txt
 fastqp reads.trim.Phred2.fastq 2> /dev/null | grep q50 > qual.P2.txt
 fastqp reads.trim.Phred10.fastq 2> /dev/null | grep q50 > qual.P10.txt
@@ -95,11 +93,6 @@ fastqp reads.trim.Phred30.fastq 2> /dev/null | grep q50 > qual.P30.txt
 ```
 
 > Run Jellyfish.
-
-```
-mkdir $HOME/jelly
-cd $HOME/jelly
-```
 
 > You'll have to run these commands 4 separate times -
 > once for each different trimmed dataset, and once for the raw dataset.
