@@ -86,10 +86,10 @@ MINLEN:25
 
 
 ```
-fastqp 1.subsamp_1.fastq 2> /dev/null | grep q50 > qual.raw.txt
-fastqp reads.trim.Phred2.fastq 2> /dev/null | grep q50 > qual.P2.txt
-fastqp reads.trim.Phred10.fastq 2> /dev/null | grep q50 > qual.P10.txt
-fastqp reads.trim.Phred30.fastq 2> /dev/null | grep q50 > qual.P30.txt
+fastqp -n 500000 1.subsamp_1.fastq 2> /dev/null | grep q50 > qual.raw.txt
+fastqp -n 500000 reads.trim.Phred2.fastq 2> /dev/null | grep q50 > qual.P2.txt
+fastqp -n 500000 reads.trim.Phred10.fastq 2> /dev/null | grep q50 > qual.P10.txt
+fastqp -n 500000 reads.trim.Phred30.fastq 2> /dev/null | grep q50 > qual.P30.txt
 ```
 
 > Run Jellyfish.
@@ -124,7 +124,7 @@ What does this plot show you??
 
 
 ```
-barplot(c(raw$V2[1],trim2$V2[1],trim10$V2[1],trim30$V2[1]),
+barplot(c(trim0$V2[1],trim2$V2[1],trim10$V2[1],trim30$V2[1]),
          names=c('Raw', 'Phred2', 'Phred10', 'Phred30'),
          main='Number of unique kmers')
 ```
