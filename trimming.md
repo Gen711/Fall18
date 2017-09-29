@@ -86,7 +86,7 @@ MINLEN:25
 
 
 ```
-fastqp -n 500000 1.subsamp_1.fastq 2> /dev/null | grep q50 > qual.raw.txt
+fastqp -n 500000 1.subsamp_1.fastq 2> /dev/null | grep q50 > qual.P0.txt
 fastqp -n 500000 reads.trim.Phred2.fastq 2> /dev/null | grep q50 > qual.P2.txt
 fastqp -n 500000 reads.trim.Phred10.fastq 2> /dev/null | grep q50 > qual.P10.txt
 fastqp -n 500000 reads.trim.Phred30.fastq 2> /dev/null | grep q50 > qual.P30.txt
@@ -94,7 +94,7 @@ fastqp -n 500000 reads.trim.Phred30.fastq 2> /dev/null | grep q50 > qual.P30.txt
 
 > Run Jellyfish.
 
-> You'll have to run these 2 commands 4 additional times -
+> You'll have to run each of these 2 commands 4 times in total -
 > once for each different trimmed dataset, and once for the raw dataset.
 > Make sure to Change the names of the input and output files..
 
@@ -116,10 +116,10 @@ trim2 <- read.table("trim2.histo", quote="\"")
 Import all 4 quality files: this is the code for importing 1 of them. If you forget what they are named, use the `ls` command to see the names.
 
 ```
-qual0 <- read.table("qual.raw.txt", quote="\"")
+qual0 <- read.table("qual.P0.txt", quote="\"")
 ```
 
-Plot: 
+Plot:
 
 
 ```
