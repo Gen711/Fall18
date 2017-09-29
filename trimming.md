@@ -50,7 +50,7 @@ sudo apt-get -y --allow-unauthenticated install ruby build-essential python pyth
 > Install LinuxBrew like you have every other week!
 
 
-> Install gcc (a compiler), mafft (to do alignment) and raxml (to make the phylogeny)
+> Install gcc (a compiler), jellyfish (to do count kmers) and trimmomatic (to trim reads)
 
 ```
 brew install gcc jellyfish trimmomatic
