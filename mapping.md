@@ -106,7 +106,7 @@ samtools flagstat squishAligned.sortedByCoord.out.bam
 ```
 
 ```bash
-samtools mpileup -uD -f Anopheles_gambiae.AgamP4.dna.toplevel.fa squishAligned.sortedByCoord.out.bam | \
+samtools mpileup -u -t DP -f Anopheles_gambiae.AgamP4.dna.toplevel.fa squishAligned.sortedByCoord.out.bam | \
     bcftools view -bvcg - > variants.raw.bcf
 
 bcftools view variants.raw.bcf > variants.vcf
