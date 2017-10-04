@@ -51,7 +51,7 @@ sudo apt-get -y install ruby build-essential python python-pip
 > Install LinuxBrew like you have every other week!
 
 
-> Install the following software packages: `gcc bwa samtools aria2 bedtools rna-star`
+> Install the following software packages: `gcc bwa samtools aria2 bedtools rna-star bcftools`
 
 
 >Download data
@@ -107,7 +107,7 @@ samtools flagstat squishAligned.sortedByCoord.out.bam
 
 ```bash
 samtools mpileup -u -t DP -f Anopheles_gambiae.AgamP4.dna.toplevel.fa squishAligned.sortedByCoord.out.bam | \
-    bcftools view -bvcg - > variants.raw.bcf
+    bcftools view - > variants.raw.bcf
 
 bcftools view variants.raw.bcf > variants.vcf
 ```
