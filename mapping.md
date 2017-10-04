@@ -12,11 +12,12 @@ During this lab, we will acquaint ourselves with read mapping. You will:
 4. look at mapping quality
 
 
-The STAR manual:
+The STAR manuscript: https://www.ncbi.nlm.nih.gov/pubmed/23104886
+The STAR manual: https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf
 
 
 
-> Step 1: Launch an instance on Jetstream. For this exercise, we will use a *m1.xlarge* instance.
+> Step 1: Launch an instance on Jetstream. For this exercise, we will use a _m1.xlarge_ instance.
 
 ```
 ssh -i jetkey username@xxx.xxx.xxx.xxx
@@ -43,27 +44,27 @@ sudo apt-get -y upgrade
 
 
 ```
-sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip
+sudo apt-get -y install ruby build-essential python python-pip
 ```
 
 
 > Install LinuxBrew like you have every other week!
 
 
-> Install gcc (a compiler), mafft (to do alignment) and raxml (to make the phylogeny)
+> Install the following software packages: `gcc bwa samtools aria2 bedtools rna-star`
 
 
-```bash
-brew install gcc bwa samtools aria2 bedtools rna-star
-```
-
-
-Download data
+>Download data
 
 ```bash
 aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna.toplevel.fa.gz
 aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/gtf/anopheles_gambiae/Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 prefetch SRR1727555
+```
+
+>Convert SRA files to fastQ format and un-compress other files.
+
+```bash
 fastq-dump --split-files --split-spot ncbi/public/sra/SRR1727555.sra
 gzip -d Anopheles_gambiae.AgamP4.dna.toplevel.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 ```
@@ -71,13 +72,12 @@ gzip -d Anopheles_gambiae.AgamP4.dna.toplevel.fa.gz Anopheles_gambiae.AgamP4.37.
 Map reads!! (17 minutes). You're mapping to a mouse brain transcriptome reference.
 
 ```bash
-
 mkdir bad_mosquito
 STAR --runMode genomeGenerate --genomeDir bad_mosquito \
 --genomeFastaFiles Anopheles_gambiae.AgamP4.dna.toplevel.fa \
 --runThreadN 24 \
 --genomeSAindexNbases 15 \
--- sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
+--sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 
 STAR --runMode alignReads \
 --genomeDir bad_mosquito \
@@ -85,9 +85,6 @@ STAR --runMode alignReads \
 --runThreadN 24 --outFilterScoreMinOverLread 0 --outFilterMatchNminOverLread 0 --outFilterMatchNmin 0 --outFilterMismatchNmax 2 \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix squish
-
-
-
 ```
 
 Look at BAM file. Can you see the columns that we talked about in class?
