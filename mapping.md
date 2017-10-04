@@ -1,7 +1,7 @@
 ## Read Mapping
 
 
-During this lab, we will acquaint ourselves with de novo transcriptome assembly using Trinity. You will:
+During this lab, we will acquaint ourselves with read mapping. You will:
 
 1. Install software and download data
 
@@ -12,11 +12,11 @@ During this lab, we will acquaint ourselves with de novo transcriptome assembly 
 4. look at mapping quality
 
 
-The BWA manual: http://bio-bwa.sourceforge.net/
+The STAR manual:
 
 
 
-> Step 1: Launch an instance on Jetstream. For this exercise, we will use a m1.medium instance.
+> Step 1: Launch an instance on Jetstream. For this exercise, we will use a *m1.xlarge* instance.
 
 ```
 ssh -i jetkey username@xxx.xxx.xxx.xxx
@@ -75,14 +75,14 @@ Map reads!! (17 minutes). You're mapping to a mouse brain transcriptome referenc
 mkdir bad_mosquito
 STAR --runMode genomeGenerate --genomeDir bad_mosquito \
 --genomeFastaFiles Anopheles_gambiae.AgamP4.dna.toplevel.fa \
---runThreadN 6 \
+--runThreadN 24 \
 --genomeSAindexNbases 15 \
 -- sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 
 STAR --runMode alignReads \
 --genomeDir bad_mosquito \
 --readFilesIn SRR1727555_1.fastq SRR1727555_2.fastq \
---runThreadN 6 --outFilterScoreMinOverLread 0 --outFilterMatchNminOverLread 0 --outFilterMatchNmin 0 --outFilterMismatchNmax 2 \
+--runThreadN 24 --outFilterScoreMinOverLread 0 --outFilterMatchNminOverLread 0 --outFilterMatchNmin 0 --outFilterMismatchNmax 2 \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix squish
 
