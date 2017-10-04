@@ -22,3 +22,4 @@
     - **Week3** [Phylogenetics](phylogenetics.md)
     - **Week4** [HMMER](hmmer.md)
     - **Week5** [Trimming fastQ files](trimming.md)
+    - **Week6** [Mapping fastQ files](mapping.md)
