@@ -51,13 +51,13 @@ sudo apt-get -y install ruby build-essential python python-pip
 > Install LinuxBrew like you have every other week!
 
 
-> Install the following software packages: `gcc bwa samtools aria2 bedtools rna-star bcftools`
+> Install the following software packages: `gcc bwa samtools aria2 bedtools rna-star bcftools sratoolkit`
 
 
 >Download data
 
 ```bash
-aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna.toplevel.fa.gz
+aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa.gz
 aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/gtf/anopheles_gambiae/Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 prefetch SRR1727555
 ```
@@ -66,19 +66,25 @@ prefetch SRR1727555
 
 ```bash
 fastq-dump --split-files --split-spot ncbi/public/sra/SRR1727555.sra
-gzip -d Anopheles_gambiae.AgamP4.dna.toplevel.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
+gzip -d Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
+```
+
+
+Index the genome
+
+```bash
+mkdir bad_mosquito
+
+STAR --runMode genomeGenerate --genomeDir bad_mosquito \
+--genomeFastaFiles Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa \
+--runThreadN 24 \
+--genomeSAindexNbases 15 \
+--sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 ```
 
 Map reads!! (17 minutes). You're mapping to a mouse brain transcriptome reference.
 
 ```bash
-mkdir bad_mosquito
-STAR --runMode genomeGenerate --genomeDir bad_mosquito \
---genomeFastaFiles Anopheles_gambiae.AgamP4.dna.toplevel.fa \
---runThreadN 24 \
---genomeSAindexNbases 15 \
---sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
-
 STAR --runMode alignReads \
 --genomeDir bad_mosquito \
 --readFilesIn SRR1727555_1.fastq SRR1727555_2.fastq \
@@ -93,9 +99,11 @@ Look at BAM file. Can you see the columns that we talked about in class?
 ```bash
 #Take a quick general look.
 
-samtools view squishAligned.sortedByCoord.out.bam | head
 samtools index squishAligned.sortedByCoord.out.bam
-samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna.toplevel.fa
+
+#use the spacebar to scan quickly
+
+samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa
 ```
 
 
@@ -106,10 +114,9 @@ samtools flagstat squishAligned.sortedByCoord.out.bam
 ```
 
 ```bash
-samtools mpileup -u -t DP -f Anopheles_gambiae.AgamP4.dna.toplevel.fa squishAligned.sortedByCoord.out.bam | \
-    bcftools view -v snps - > variants.raw.bcf
+samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa squishAligned.sortedByCoord.out.bam | \
+    bcftools view -m2 -M2 -O v --threads 24 -v snps - > variants.vcf
 
-bcftools view variants.raw.bcf > variants.vcf
 ```
 
 # TERMINATE YOUR INSTANCE
