@@ -82,7 +82,7 @@ STAR --runMode genomeGenerate --genomeDir bad_mosquito \
 --sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 ```
 
->Map reads!! (7 minutes). You're mapping an antenna transcriptome to the mosquito genome.
+>Map reads!! (10 minutes). You're mapping RNA data, from a mosquito antenna to the mosquito genome.
 
 ```bash
 STAR --runMode alignReads \
