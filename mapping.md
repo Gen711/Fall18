@@ -117,7 +117,7 @@ samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna_rm.to
     bcftools view -O v --threads 24 -v snps - > variants.vcf
 ```
 
-> look at your vcf file
+> look at your vcf file. If we had mapped many individuals, we could calculate many interesting population genetics stats using the `vcftools` package. 
 
 ```bash
 less -S variants.vcf
