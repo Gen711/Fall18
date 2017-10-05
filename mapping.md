@@ -82,7 +82,7 @@ STAR --runMode genomeGenerate --genomeDir bad_mosquito \
 --sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 ```
 
-Map reads!! (7 minutes). You're mapping to a mouse brain transcriptome reference.
+>Map reads!! (7 minutes). You're mapping to a mouse brain transcriptome reference.
 
 ```bash
 STAR --runMode alignReads \
@@ -90,10 +90,10 @@ STAR --runMode alignReads \
 --readFilesIn SRR1727555_1.fastq SRR1727555_2.fastq \
 --runThreadN 24 \
 --outSAMtype BAM SortedByCoordinate \
---outFileNamePrefix squish
+--outFileNamePrefix smallsquish
 ```
 
-Look at BAM file. Can you see the columns that we talked about in class?
+>Look at BAM file. Can you see the columns that we talked about in class?
 
 
 ```bash
@@ -107,14 +107,18 @@ samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna_
 ```
 
 
-look at mapping stats. Figure out what this means.
+>look at mapping stats. Figure out what this means.
 
 ```bash
 samtools flagstat squishAligned.sortedByCoord.out.bam
 ```
 
+> Let's find SNPs, but jsut on the 2L chromsome.
+
 ```bash
-samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa squishAligned.sortedByCoord.out.bam | \
+
+samtools view squishAligned.sortedByCoord.out.bam | awk '$1 == 2L' | samtools view -B 2L.bam
+samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa 2L.bam | \
     bcftools view -m2 -M2 -O v --threads 24 -v snps - > variants.vcf
 
 ```
