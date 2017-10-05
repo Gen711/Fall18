@@ -82,7 +82,7 @@ STAR --runMode genomeGenerate --genomeDir bad_mosquito \
 --sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 ```
 
->Map reads!! (7 minutes). You're mapping to a mouse brain transcriptome reference.
+>Map reads!! (7 minutes). You're mapping an antenna transcriptome to the mosquito genome.
 
 ```bash
 STAR --runMode alignReads \
@@ -90,7 +90,7 @@ STAR --runMode alignReads \
 --readFilesIn SRR1727555_1.fastq SRR1727555_2.fastq \
 --runThreadN 24 \
 --outSAMtype BAM SortedByCoordinate \
---outFileNamePrefix smallsquish
+--outFileNamePrefix squish
 ```
 
 >Look at BAM file. Can you see the columns that we talked about in class?
