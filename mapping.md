@@ -51,7 +51,7 @@ sudo apt-get -y install ruby build-essential python python-pip
 > Install LinuxBrew like you have every other week!
 
 
-> Install the following software packages: `gcc bwa samtools aria2 bedtools rna-star bcftools sratoolkit`
+> Install the following software packages: `gcc samtools aria2 bedtools rna-star bcftools sratoolkit`
 
 
 >Download data
