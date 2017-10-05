@@ -51,14 +51,14 @@ sudo apt-get -y install ruby build-essential python python-pip
 > Install LinuxBrew like you have every other week!
 
 
-> Install the following software packages: `gcc samtools aria2 bedtools rna-star bcftools sratoolkit`
+> Install the following software packages: `gcc samtools bedtools rna-star bcftools sratoolkit`
 
 
 >Download data
 
 ```bash
-aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa.gz
-aria2c ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/gtf/anopheles_gambiae/Anopheles_gambiae.AgamP4.37.chr.gtf.gz
+curl -LO ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz
+curl -LO ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/gtf/anopheles_gambiae/Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 prefetch SRR1727555
 ```
 
@@ -66,14 +66,9 @@ prefetch SRR1727555
 
 ```bash
 fastq-dump --split-files --split-spot ncbi/public/sra/SRR1727555.sra
-gzip -d Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
+gzip -d Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 ```
 
-> filter the gtf, to include only the 2L chromosome.
-
-```
-awk '$1 == "2L"' Anopheles_gambiae.AgamP4.37.chr.gtf > Anopheles_gambiae.AgamP4.37.2L.gtf
-```
 
 > Index the genome
 
@@ -81,10 +76,10 @@ awk '$1 == "2L"' Anopheles_gambiae.AgamP4.37.chr.gtf > Anopheles_gambiae.AgamP4.
 mkdir bad_mosquito
 
 STAR --runMode genomeGenerate --genomeDir bad_mosquito \
---genomeFastaFiles Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa \
+--genomeFastaFiles Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa \
 --runThreadN 24 \
 --genomeSAindexNbases 15 \
---sjdbGTFfile Anopheles_gambiae.AgamP4.37.2L.gtf
+--sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
 ```
 
 Map reads!! (7 minutes). You're mapping to a mouse brain transcriptome reference.
@@ -108,7 +103,7 @@ samtools index squishAligned.sortedByCoord.out.bam
 
 #use the spacebar to scan quickly
 
-samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa
+samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa
 ```
 
 
