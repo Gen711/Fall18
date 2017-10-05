@@ -51,7 +51,7 @@ sudo apt-get -y install ruby build-essential python python-pip
 > Install LinuxBrew like you have every other week!
 
 
-> Install the following software packages: `gcc samtools bedtools rna-star bcftools sratoolkit`
+> Install the following software packages: `gcc samtools bedtools rna-star bcftools vcftools sratoolkit`
 
 
 >Download data
@@ -106,20 +106,21 @@ samtools index -@ 24 squishAligned.sortedByCoord.out.bam
 samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa
 ```
 
-
->look at mapping stats. Figure out what this means.
-
-```bash
-samtools flagstat -@ 24 squishAligned.sortedByCoord.out.bam
-```
-
 > Let's find SNPs, but just on the 2L chromosome.
 
 ```bash
-samtools view --threads 12 squishAligned.sortedByCoord.out.bam | awk '$1 == 2L' | samtools view --threads 12 -1 -o 2L.bam -
+samtools view -h -t Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa --threads 12 squishAligned.sortedByCoord.out.bam \
+| awk '$1 ~ "@" || $3=="2L"' \
+| samtools view -h -t Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa --threads 12 -1 -o 2L.bam -
 
 samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa 2L.bam | \
-    bcftools view -m2 -M2 -O v --threads 24 -v snps - > variants.vcf
+    bcftools view -O v --threads 24 -v snps - > variants.vcf
+```
+
+> look at your vcf file
+
+```bash
+less -S variants.vcf
 ```
 
 # TERMINATE YOUR INSTANCE
