@@ -69,8 +69,13 @@ fastq-dump --split-files --split-spot ncbi/public/sra/SRR1727555.sra
 gzip -d Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 ```
 
+> filter the gtf, to include only the 2L chromosome.
 
-Index the genome
+```
+awk '$1 == "2L"' Anopheles_gambiae.AgamP4.37.chr.gtf > Anopheles_gambiae.AgamP4.37.2L.gtf
+```
+
+> Index the genome
 
 ```bash
 mkdir bad_mosquito
@@ -79,16 +84,16 @@ STAR --runMode genomeGenerate --genomeDir bad_mosquito \
 --genomeFastaFiles Anopheles_gambiae.AgamP4.dna.chromosome.2L.fa \
 --runThreadN 24 \
 --genomeSAindexNbases 15 \
---sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
+--sjdbGTFfile Anopheles_gambiae.AgamP4.37.2L.gtf
 ```
 
-Map reads!! (17 minutes). You're mapping to a mouse brain transcriptome reference.
+Map reads!! (7 minutes). You're mapping to a mouse brain transcriptome reference.
 
 ```bash
 STAR --runMode alignReads \
 --genomeDir bad_mosquito \
 --readFilesIn SRR1727555_1.fastq SRR1727555_2.fastq \
---runThreadN 24 --outFilterScoreMinOverLread 0 --outFilterMatchNminOverLread 0 --outFilterMatchNmin 0 --outFilterMismatchNmax 2 \
+--runThreadN 24 \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix squish
 ```
