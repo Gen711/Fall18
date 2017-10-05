@@ -99,7 +99,7 @@ STAR --runMode alignReads \
 ```bash
 #Take a quick general look.
 
-samtools index squishAligned.sortedByCoord.out.bam
+samtools index -@ 24 squishAligned.sortedByCoord.out.bam
 
 #use the spacebar to scan quickly
 
@@ -110,17 +110,16 @@ samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna_
 >look at mapping stats. Figure out what this means.
 
 ```bash
-samtools flagstat squishAligned.sortedByCoord.out.bam
+samtools flagstat -@ 24 squishAligned.sortedByCoord.out.bam
 ```
 
-> Let's find SNPs, but jsut on the 2L chromsome.
+> Let's find SNPs, but just on the 2L chromosome.
 
 ```bash
+samtools view --threads 12 squishAligned.sortedByCoord.out.bam | awk '$1 == 2L' | samtools view --threads 12 -1 -o 2L.bam -
 
-samtools view squishAligned.sortedByCoord.out.bam | awk '$1 == 2L' | samtools view -B 2L.bam
 samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa 2L.bam | \
     bcftools view -m2 -M2 -O v --threads 24 -v snps - > variants.vcf
-
 ```
 
 # TERMINATE YOUR INSTANCE
