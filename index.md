@@ -23,4 +23,4 @@
     - **Week4** [HMMER](hmmer.md)
     - **Week5** [Trimming fastQ files](trimming.md)
     - **Week6** [Mapping fastQ files](mapping.md)
-    - **Practive Exam 1** [play exam](mock_exam1.md)
+    - **Practice Exam 1** [play exam](mock_exam1.md)

@@ -16,7 +16,7 @@ To help you prepare for the exam practical, let's do a mock exam. These are the 
 |
 |
 
-3. Install HMMER, and download `uniprot_sprot.fasta.gz` like you did in the hmmer lab. Download the file `ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz` and prepare it using the command `gzip -d Pfam-A.hmm.gz; hmmpress Pfam-A.hmm` ___________________ 10 points.
+3. Install HMMER sing linux brew, and download `uniprot_sprot.fasta.gz` like you did in the hmmer lab. Download the file `ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz` and prepare it using the command `gzip -d Pfam-A.hmm.gz; hmmpress Pfam-A.hmm` ___________________ 10 points.
 
 |
 |
@@ -26,7 +26,7 @@ To help you prepare for the exam practical, let's do a mock exam. These are the 
 |
 |
 
-5. Start ``hmmscan`` like we did in teh hmmer lab.  ____________________ 10 points (``hmmscan`` should run for <10 minutes.)
+5. Start ``hmmscan`` like we did in the hmmer lab.  ____________________ 10 points (``hmmscan`` should run for <10 minutes.)
 
 |
 |
