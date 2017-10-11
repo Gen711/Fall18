@@ -21,17 +21,17 @@ To help you prepare for the exam practical, let's do a mock exam. These are the 
 |
 |
 
-4. Download the dataset located here: ``https://s3.amazonaws.com/gen711/test.dataset.fa``. The dataset you will use in ``hmmscan`` is called ``test.dataset.fa``.  _________________ 5 points
+4. Download the dataset located here: ``https://s3.amazonaws.com/gen711/test.dataset.fa``. The dataset you will use in ``hmmsearch`` is called ``test.dataset.fa``.  _________________ 5 points
 
 |
 |
 
-5. Start ``hmmscan`` like we did in the hmmer lab.  ____________________ 10 points (``hmmscan`` should run for <10 minutes.)
+5. Start ``hmmsearch`` like we did in the hmmer lab.  ____________________ 10 points (``hmmscan`` should run for <10 minutes.)
 
 |
 |
 
-6. How many ``Ig_2`` domains are present in the dataset? _______________ 15 points
+6. How many ``4HBT`` domains are present in the dataset? _______________ 15 points
 
 |
 |
