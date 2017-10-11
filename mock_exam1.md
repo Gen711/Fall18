@@ -26,7 +26,7 @@ To help you prepare for the exam practical, let's do a mock exam. These are the 
 |
 |
 
-5. Start ``hmmsearch`` like we did in the hmmer lab.  ____________________ 10 points (``hmmscan`` should run for <10 minutes.)
+5. Start ``hmmsearch`` like we did in the hmmer lab.  ____________________ 10 points (``hmmsearch`` should run for <10 minutes.)
 
 |
 |
