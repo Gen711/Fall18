@@ -28,4 +28,4 @@ ftp://ftp.ensemblgenomes.org/pub/metazoa/release-37/fasta/stegodyphus_mimosarum/
 
 7. Which query sequence(s) match the reference gene `Reticulon-4`? ___________________ 5 points.
 
-#Terminate your instance!!
+# Terminate your instance!!
