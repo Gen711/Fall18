@@ -3,18 +3,16 @@ Exam 1 practical #2
 
 1. Launch a medium instance.  _______ 2 points
 
-|
-|
 
 2. Update your machine and install the basic software using ``apt-get``. _________ 2 points
 
-|
-|
+
 
 3. Install blast using linuxbrew, write the output of `blastp -version` for full credit ___________________ 5 points.
 
 
 4. Download the query _________ 2 points
+
 ```
 https://s3.amazonaws.com/reference_assemblies/Phidippus/transcriptome/Phidippus.v1.0.0.fasta
 ```
