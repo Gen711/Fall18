@@ -17,15 +17,15 @@ Exam 1 #2
 https://s3.amazonaws.com/reference_assemblies/bluegill/bluegill.final.fa
 ```
 
-5. Download, and unzip the reference database _________ 2 points
+\5. Download, and unzip the reference database _________ 2 points
 
 ```
 ftp://ftp.ensembl.org/pub/release-90/fasta/danio_rerio/cdna/Danio_rerio.GRCz10.cdna.all.fa.gz
 ```
 
-6. Make the blast database, and blast. _________ 2 points
+\6. Make the blast database, and blast. _________ 2 points
 
 
-7. How many matches are there to the reference gene `hsp70`? ___________________ 5 points.
+\7. How many matches are there to the reference gene `hsp70`? ___________________ 5 points.
 
 # Terminate your instance!!
