@@ -17,15 +17,15 @@ Exam 1 #1
 https://s3.amazonaws.com/reference_assemblies/imitator/Rimi.v1.02.fasta
 ```
 
-5. Download the reference database _________ 2 points
+\5. Download the reference database _________ 2 points
 
 ```
 ftp://ftp.xenbase.org/pub/Genomics/Sequences/xtropMRNA.fasta
 ```
 
-6. Make the blast database, and blast. _________ 2 points
+\6. Make the blast database, and blast. _________ 2 points
 
 
-7. How many matches are there to the reference gene `cyp2r1`? ___________________ 5 points.
+\7. How many matches are there to the reference gene `cyp2r1`? ___________________ 5 points.
 
 # Terminate your instance!!
