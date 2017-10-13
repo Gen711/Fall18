@@ -25,3 +25,4 @@
     - **Week6** [Mapping fastQ files](mapping.md)
     - **Practice Exam 1** [play exam](mock_exam1.md)
     - **Practice Exam 1a** [second play exam](practicepractical.md)
+    - **Lab Exam 1st section** [Exam 1](lab_exam1.md)
