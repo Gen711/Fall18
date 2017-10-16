@@ -27,3 +27,4 @@
     - **Practice Exam 1a** [second play exam](practicepractical.md)
     - **Lab Exam 1st section** [Exam 1](lab_exam1.md)
     - **Lab Exam 2nd section** [Exam 1](lab_exam1a.md)
+    - **Lab Exam Alternate** [Exam 1](lab_exam1b.md)

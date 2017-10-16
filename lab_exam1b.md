@@ -1,4 +1,4 @@
-Exam 1 Alt 
+Exam 1 Alt
 --
 
 1. Launch a medium instance.  _______ 2 points
@@ -26,6 +26,6 @@ ftp://ftp.ensembl.org/pub/release-90/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38
 \6. Make the blast database, and blast. _________ 2 points
 
 
-\7. How many matches are there to the reference gene `OPN1MW`? ___________________ 5 points.
+\7. How many matches are there to the reference gene `AQP4`? ___________________ 5 points.
 
 # Terminate your instance!!
