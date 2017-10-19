@@ -43,15 +43,15 @@ gcc jellyfish skewer seqtk
 > Install Khmer
 
 ```
-    pip install khmer
+pip install khmer
 ```
 > Download data and a file with the Illumina adapters, ``TruSeq3-PE.fa``
 
 ::
 ```
-  curl -LO https://s3.amazonaws.com/gen711/TruSeq3-PE.fa
-  curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R1.PF.fastq.gz > kidney.1.fq.gz &
-  curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R2.PF.fastq.gz > kidney.2.fq.gz
+curl -LO https://s3.amazonaws.com/gen711/TruSeq3-PE.fa
+curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R1.PF.fastq.gz > kidney.1.fq.gz &
+curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R2.PF.fastq.gz > kidney.2.fq.gz
 ```
 
 > Merge --> Trim low quality bases and adapters from dataset  --> count kmers --> make a histogram. Normalize in the 1nd command. Make sure you know what is going on here!
@@ -85,7 +85,7 @@ seqtk mergepe kidney.1.fq.gz kidney.2.fq.gz \
 > Now, you ahve 2 files: `trimmed.yes.normalize.histo` and `trimmed.no.normalize.histo`. these contain the kmer frequency data. The 1st column is the abundance, the 2nd column is the number of 25mers that have that abundance. Can you tell me how many unique kmers there are in each dataset? Does this make sense?  
 
 
-> Launch RStudio, remember you have to make a new password, and find the web address. See lab 1 for details. 
+> Launch RStudio, remember you have to make a new password, and find the web address. See lab 1 for details.
 
 ```
 install.packages("beanplot")
