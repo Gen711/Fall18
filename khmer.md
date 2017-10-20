@@ -20,7 +20,7 @@ Skewer: http://www.biomedcentral.com/1471-2105/15/182
 Seqtk: https://github.com/lh3/seqtk
 
 
-> Step 1: Launch, For this exercise, we will use a xlarge instance.
+> Step 1: Launch, For this exercise, we will use a m1.xlarge instance.
 
 
 
@@ -91,7 +91,7 @@ seqtk mergepe kidney.1.fq.gz kidney.2.fq.gz \
 install.packages("beanplot")
 library("beanplot")
 
-#Import all 2 histogram datasets: this is the code for importing 1 of them..
+#Import all 2 histogram datasets:
 
 
 y_khmer <- read.table("trimmed.yes.normalize.histo", quote="\"")
