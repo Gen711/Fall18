@@ -34,7 +34,7 @@ curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtere
 ```
 wget https://s3.amazonaws.com/gen711/ecoli_data.tar.gz
 tar -zxf ecoli_data.tar.gz
-curl -LO ftp://ftp.ensemblgenomes.org/pub/release-32/bacteria//fasta/bacteria_91_collection/escherichia_coli/dna/Escherichia_coli.HUSEC2011CHR1.dna_rm.toplevel.fa.gz
+curl -LO ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
 ```
 
 > Assemble with canu (http://canu.readthedocs.io/en/latest/index.html). Canu is the leading long-read genome assembler as of 2017.
@@ -46,7 +46,7 @@ canu \
  -pacbio-raw pacbio.fastq
  ```
 
-> Assemble with SPAdes, using a kmer length of 95
+> Assemble with SPAdes (http://cab.spbu.ru/software/spades/), using a kmer length of 95. This is the genome assembler you will use, if you assemble Illumina data.
 
 ```
  spades.py -t 24 -m 55 --mp1-rf -k 95 \
@@ -61,8 +61,8 @@ canu \
 
 ```
 quast Ecoli_all_data/scaffolds.fasta ecoli-pacbio/ecoli.contigs.fasta \
-        -R  Escherichia_coli.HUSEC2011CHR1.dna_rm.toplevel.fa.gz \
-        -o quast_output --threads 24
+        -R GCF_000005845.2_ASM584v2_genomic.fna.gz \
+        -o quast_output --threads 24 -s --gene-finding
 ```
 
 > look at report, found at `quast_output/report.txt`
@@ -72,6 +72,6 @@ quast Ecoli_all_data/scaffolds.fasta ecoli-pacbio/ecoli.contigs.fasta \
 scp -ri jetkey username@xxx.xxx.xxx.x:quast_output ~/Downloads
 ```
 
-> Optional: Polish PacBio assembly using Quiver (https://github.com/PacificBiosciences/GenomicConsensus). This will take more time that we have in lab, but might be a good learning experience. 
+> Optional: Polish PacBio assembly using Quiver (https://github.com/PacificBiosciences/GenomicConsensus). This will take more time that we have in lab, but might be a good learning experience.
 
 This lab uses code from ANGUS2017: https://angus.readthedocs.io/en/2017/visualizing-blast-scores-with-RStudio.html
