@@ -29,3 +29,4 @@
     - **Lab Exam 2nd section** [Exam 1](lab_exam1a.md)
     - **Lab Exam Alternate** [Exam 1](lab_exam1b.md)
     - **Week8** [kmer counting](khmer.md)
+    - **Week9** [Genome Assembly](bacterial_assembly.md)
