@@ -1,6 +1,5 @@
-Lab 8: Bacterial Genome Assembly
+Lab 9: Bacterial Genome Assembly
 --
-
 
 > Step 1: Launch an instance on Jetstream. For this exercise, we will use a m1.xlarge instance.
 
@@ -32,7 +31,7 @@ curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtere
 > Download an Illumina dataset for E. coli, along with a reference genome
 
 ```
-wget https://s3.amazonaws.com/gen711/ecoli_data.tar.gz
+curl -LO https://s3.amazonaws.com/gen711/ecoli_data.tar.gz
 tar -zxf ecoli_data.tar.gz
 curl -LO ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
 ```
@@ -62,7 +61,7 @@ canu \
 ```
 quast Ecoli_all_data/scaffolds.fasta ecoli-pacbio/ecoli.contigs.fasta \
         -R GCF_000005845.2_ASM584v2_genomic.fna.gz \
-        -o quast_output --threads 24 -s --gene-finding
+        -o quast_output --threads 24 --gene-finding
 ```
 
 > look at report, found at `quast_output/report.txt`
