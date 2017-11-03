@@ -47,16 +47,18 @@ seqtk sample -s23 1.subsamp_2.fastq 100000 > reads.2.fq
 ```
 ### Download databases
 
-mkdir $HOME/busco_dbs && cd $HOME/busco_dbs
+mkdir Oyster_River_Protocol/busco_dbs && cd Oyster_River_Protocol/busco_dbs
 
 # Eukaryota
 curl -LO http://busco.ezlab.org/v2/datasets/eukaryota_odb9.tar.gz
 
 tar -zxf eukaryota_odb9.tar.gz
+cd
 
-### Move and edit config file
-mv $HOME/Oyster_River_Protocol/software/busco/config/config.ini.default $HOME/Oyster_River_Protocol/software/busco/config/config.ini
-nano $HOME/Oyster_River_Protocol/software/busco/config/config.ini
+### Move and edit config file (change everyplace it says `mmacmane` to your user name)
+
+mv Oyster_River_Protocol/software/config.ini Oyster_River_Protocol/software/busco/config/config.ini
+nano Oyster_River_Protocol/software/busco/config/config.ini
 
 ### add this line under the `[busco] line`
 
