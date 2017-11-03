@@ -59,14 +59,9 @@ cd
 
 mv Oyster_River_Protocol/software/config.ini Oyster_River_Protocol/software/busco/config/config.ini
 nano Oyster_River_Protocol/software/busco/config/config.ini
-
-### add this line under the `[busco] line`
-
-lineage_path = /home/YOUR_USERNAME/busco_dbs/eukaryota_odb9
-
 ```
 
-> Assemble
+> Assemble using the ORP
 
 ```
 $HOME/Oyster_River_Protocol/oyster.mk main \
