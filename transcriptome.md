@@ -20,7 +20,7 @@ pip install cvxopt numpy biopython scipy
 >Install LinuxBrew, then the following software..
 
 ```
-brew install gcc python metis parallel
+brew install gcc python metis parallel tmux
 ```
 
 > Install the Oyster River Software
@@ -29,9 +29,13 @@ brew install gcc python metis parallel
 git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
 make
-cd 
+cd
 ```
-## Make sure to put the things it says to, in `~/.profile`
+## Make sure to put the things it says to, in `~/.profile`, using `nano`. Paste them in at the bottom of the file
+
+```
+source ~/.profile
+```
 
 > Download Illumina RNAseq data, and subsample it.
 
@@ -71,4 +75,4 @@ READ1=reads.1.fq \
 READ2=reads.2.fq \
 RUNOUT=smallassembly
  ```
-# Terminate your instance 
+# Terminate your instance
