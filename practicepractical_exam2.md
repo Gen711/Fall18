@@ -12,7 +12,7 @@ Exam 2 practical
 3. Install linuxbrew, and the same software we used in the kmer-counting lab
 
 
-4. Download the files `https://s3.amazonaws.com/gen711/1.subsamp_2.fastq` and `https://s3.amazonaws.com/gen711/1.subsamp_1.fastq`
+4. Download the read files `https://s3.amazonaws.com/gen711/1.subsamp_2.fastq` and `https://s3.amazonaws.com/gen711/1.subsamp_1.fastq` and adapter file ` https://s3.amazonaws.com/gen711/TruSeq3-PE.fa`.
 
 5. Trim at a threshold of `5`, and normalize using a threshold of `50`. Use the code from the kmer-counting lab to do this.
 
