@@ -31,3 +31,4 @@
     - **Week8** [kmer counting](khmer.md)
     - **Week9** [Genome Assembly](bacterial_assembly.md)
     - **Week10** [Transcriptome Assembly](transcriptome.md)
+    - **Practice Exam 2** [practice exam](practicepractical_exam2.md)
