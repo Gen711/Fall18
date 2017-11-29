@@ -16,7 +16,7 @@ Exam 2 practical
 
 5. Trim at a threshold of `5`, and normalize using a threshold of `50`. Use the code from the kmer-counting lab to do this.
 
-6. Write the kmer abundances for the top 2-most abundant kmers from the normalized and un-normalized datasets.
+6. Write the number of kmers whose frequency is 1 and 2. from the normalized and un-normalized datasets.
 
 
 # Terminate your instance!!
