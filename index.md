@@ -32,3 +32,4 @@
     - **Week9** [Genome Assembly](bacterial_assembly.md)
     - **Week10** [Transcriptome Assembly](transcriptome.md)
     - **Practice Exam 2** [practice exam](practicepractical_exam2.md)
+    - **Exam 2 section 1** [practice exam](lab_exam2.md)
