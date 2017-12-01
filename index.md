@@ -33,3 +33,4 @@
     - **Week10** [Transcriptome Assembly](transcriptome.md)
     - **Practice Exam 2** [practice exam](practicepractical_exam2.md)
     - **Exam 2 section 1** [exam](lab_exam2.md)
+    - **Exam 2 section 2** [exam](lab_exam2a.md)
