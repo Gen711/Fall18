@@ -18,7 +18,7 @@
     - **Week 1** Log in to [Jetstream](https://use.jetstream-cloud.org/). Here is some [info about it.](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/17465367/System+Overview)
     - **Week 1** [Launch a Jetstream instance](jetstream.md)
     - **Week1** [Connecting to your Jetstream VM](usingssh.md)
-    - **Week2** [BLAST](lab1_blast.md)
+    [//]: # - **Week2** [BLAST](lab1_blast.md)
     - **Week3** [Phylogenetics](phylogenetics.md)
     - **Week4** [HMMER](hmmer.md)
     - **Week5** [Trimming fastQ files](trimming.md)
