@@ -18,3 +18,4 @@
     - **Week 1** Log in to [Jetstream](https://use.jetstream-cloud.org/). Here is some [info about it.](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/17465367/System+Overview)
     - **Week1** [Setting up your Jetstream VM](usingssh.md)
     - **Week1** [Launch a Jetstream instance](jetstream.md)
+    - **Week1** [Connect to a Jetstream instance](connect.md)
