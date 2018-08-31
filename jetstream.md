@@ -28,14 +28,14 @@ You have to Name it and write a description. Make it something sensible.
 <img src="pics/sixb.png" class="img-responsive" alt=""> </div>
 
 
-### Search for the right machine type. "Ubuntu 16.04"
+### Search for the right machine type. "Ubuntu 18.04"
 
-<img src="pics/eight.png" class="img-responsive" alt=""> </div>
+<img src="pics/fifteen.png" class="img-responsive" alt=""> </div>
 
 ### Name the instance, select the appropriate size, and LAUNCH
 
 <img src="pics/nine.png" class="img-responsive" alt=""> </div>
 
-### Wait for your instance to become active. This will take between 2 and 10 minutes.
+### Wait for your instance to become active. This will take between 2 and 12938750 minutes.
 
 <img src="pics/ten.png" class="img-responsive" alt=""> </div>
