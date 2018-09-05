@@ -34,29 +34,29 @@ sudo apt-get -y upgrade
 > So now that we have updates the software, lets see how to add new software. Same basic command, but instead of the `update` or `upgrade` command, we're using `install`. EASY!!
 
 ```
-sudo apt-get -y install ruby build-essential python python-pip gdebi-core r-base
+
+
+sudo apt-get -y install build-essential python python-pip gdebi-core r-base git
 ```
 
 
-> Install LinuxBrew. Linux brew is another package manager, but for scientific software. We will use it basically every week!
+> Install Conda. Conda is another package manager, but for scientific software. We will use it basically every week!
 
 ```
-sudo mkdir /home/linuxbrew
-sudo chown $USER:$USER /home/linuxbrew
-git clone https://github.com/Linuxbrew/brew.git /home/linuxbrew/.linuxbrew
-echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.profile
-echo 'export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"' >> ~/.profile
-echo 'export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"' >> ~/.profile
-source ~/.profile
-brew tap homebrew/science
-brew update
-brew doctor
+mkdir anaconda
+cd anaconda
+curl -LO https://repo.anaconda.com/archive/Anaconda3-5.1.0-Linux-x86_64.sh
+bash Anaconda3-5.1.0-Linux-x86_64.sh -b -p $HOME/anaconda/install/
+echo ". $HOME/anaconda/install/etc/profile.d/conda.sh" >> ~/.bashrc
+source ~/.bashrc
 ```
 
-> Install gcc (a compiler) and BLAST
+> Make a conda environment, activate it, and install BLAST.
 
 ```
-brew install gcc blast
+conda create -y --name gen711
+conda activate gen711
+conda install -y -c bioconda blast
 ```
 
 > To get a feel for the different options, type `blastp -help`. Which type of blast does this correspond to? Look at the help info for blastp and tblastx. There are A LOT of options, most of which you will be able to safely ignore. One of the challenges of bioinformatics is knowing about the options and which ones you can safely ignore, and which ones are important.
@@ -69,6 +69,7 @@ brew install gcc blast
 >Download the data that you just generated, using this command:
 
 ```
+cd $HOME
 curl -LO https://s3.amazonaws.com/macmanes_share/transcripts.fasta
 ```
 
@@ -99,6 +100,8 @@ blastn -db mus -max_target_seqs 1 -query transcripts.fasta \
 
 ```
 less -S blast.out
+
+# type `q` to get out of this screen.
 ```
 
 >Oh crap.. There are 16501 lines in that file, how are we going to find the Scn5a gene that we are looking for?? Meet `grep`.
@@ -112,8 +115,8 @@ grep -i SCN5A blast.out
 > Download and install RStudio
 
 ```
-curl -LO  https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
-sudo gdebi -n rstudio-server-1.0.143-amd64.deb
+curl -LO  https://download2.rstudio.org/rstudio-server-1.1.456-amd64.deb
+sudo gdebi -n rstudio-server-1.1.456-amd64.deb
 ```
 
 > Find out the web address of your server. Paste the web address that comes up on the terminal, in to your browser.
@@ -122,10 +125,10 @@ sudo gdebi -n rstudio-server-1.0.143-amd64.deb
 echo My RStudio Web server is running at: http://$(hostname):8787/
 ```
 
-> Make a password (make is easy!!!)
+> Make a password (make it an easy one!!!)
 
 ```
-sudo passwd username
+sudo passwd $(whoami)
 ```
 
 >Note that the text will not echo to the screen (because it’s a password!)
@@ -135,7 +138,7 @@ sudo passwd username
 >Once R is up and running, we’ll give you a quick tour of the RStudio Web interface for those of you who haven’t seen it.
 
 
-#### in RStudio (not the terminal)
+#### in RStudio in your browser (not the terminal)
 
 >Install packages and read in the results file you just made.
 
@@ -167,4 +170,6 @@ plot(blast$X3/blast$X2 ~ blast$X6, xlim=c(7e-11, 0), col='red',frame.plot=F, yla
 ```
 
 
-This lab uses code from ANGUS2017: https://angus.readthedocs.io/en/2017/visualizing-blast-scores-with-RStudio.html 
+This lab uses code from ANGUS2017: https://angus.readthedocs.io/en/2017/visualizing-blast-scores-with-RStudio.html
+
+# Kill your instance
