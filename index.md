@@ -19,4 +19,4 @@
     - **Week1** [Setting up your Jetstream VM](usingssh.md)
     - **Week1** [Launch a Jetstream instance](jetstream.md)
     - **Week1** [Connect to a Jetstream instance](connect.md)
-    - **Week2** [Command Line BLAST](lab1_blast.md.md)
+    - **Week2** [Command Line BLAST](lab1_blast.md)
