@@ -36,44 +36,41 @@ sudo apt-get -y upgrade
 
 
 ```
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip gdebi-core r-base
+sudo apt-get -y install ruby build-essential python python-pip gdebi-core r-base
 
 ```
 
 
-> Install LinuxBrew. Linux brew is another package manager, but for scientific software. We will use it basically every week!
+> Install Conda. Conda is another package manager, but for scientific software. We will use it basically every week!
 
 ```
-sudo mkdir /home/linuxbrew
-sudo chown $USER:$USER /home/linuxbrew
-git clone https://github.com/Linuxbrew/brew.git /home/linuxbrew/.linuxbrew
-echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.profile
-echo 'export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"' >> ~/.profile
-echo 'export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"' >> ~/.profile
-source ~/.profile
-brew tap homebrew/science
-brew update
-brew doctor
+mkdir anaconda
+cd anaconda
+curl -LO https://repo.anaconda.com/archive/Anaconda3-5.1.0-Linux-x86_64.sh
+bash Anaconda3-5.1.0-Linux-x86_64.sh -b -p $HOME/anaconda/install/
+echo ". $HOME/anaconda/install/etc/profile.d/conda.sh" >> ~/.bashrc
+source ~/.bashrc
 ```
 
-> Install gcc (a compiler), mafft (to do alignment) and raxml (to make the phylogeny)
+> Make a conda environment, activate it, and install BLAST.
 
 ```
-brew install gcc mafft raxml
+conda create -y --name gen711
+conda activate gen711
+conda install -y -c bioconda raxml mafft
 ```
 
 
 >Download some data, using this command. The 1st dataset is data is from an unknown species, the 2nd us the UniProt database, which is a well curated set of protein sequences from many different organisms. It's often a good 1st database to use for blast. Look at the 2 datasets using the comment `less`. Are these nucleotides of proteins?
 
 ```
+cd $HOME
 curl -LO https://s3.amazonaws.com/gen711/dataset1.pep
 curl -LO https://s3.amazonaws.com/gen711/uniprot.pep
 
 ```
 
->In the interest of time, I am having you pull out the HOX genes from the Uniprot database, and 2 unknown sequences. You're goal is to tell me the identity of these unknowns using a tree.
+>In the interest of time, I am having you pull out the HOX genes from the Uniprot database, and 2 unknown sequences (ENSPTRP00000032491 and ENSPTRP00000032494). You're goal is to tell me the identity of these unknowns using a tree.
 
 ```
 grep --no-group-separator -A1 'ENSPTRP00000032491\|ENSPTRP00000032494' dataset1.pep > query.pep
@@ -101,26 +98,23 @@ raxmlHPC-PTHREADS -f a -m PROTGAMMAAUTO -T 6 -x 37644 -N 100 -n tree -s for.tree
 > Download and install RStudio
 
 ```
-curl -LO  https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
-sudo gdebi -n rstudio-server-1.0.143-amd64.deb
+curl -LO  https://download2.rstudio.org/rstudio-server-1.1.456-amd64.deb
+sudo gdebi -n rstudio-server-1.1.456-amd64.deb
 ```
 
-> Find out the web address of your server. Paste the web address that comes up on the terminal, in to your browser.
+> Make a password for the Rstudio webserver (make it easy, like the word "password"!!!)
 
 ```
-echo My RStudio Web server is running at: http://$(hostname):8787/
-```
-
-> Make a password (make is easy!!!)
-
-```
-sudo passwd username
+sudo passwd $(whoami)
 ```
 
 >Note that the text will not echo to the screen (because it’s a password!)
 
->Return to the browser login page and enter your new password. Note this will not change the global XSEDE login info (i.e. it only affects this instance).
+> Find out the web address of your server. Paste the web address that comes up on the terminal, in to your browser.
 
+```
+printf "\n\n\n\n The web address for my RStudio Web server, the one I need to paste into my browser, is:  http://$(hostname):8787/ \n\n\n\n"
+```
 
 #### in RStudio (not the terminal)
 
@@ -146,5 +140,8 @@ ggtree(tree) + geom_label(aes(label=bootstrap, fill=bootstrap)) + geom_tiplab() 
 scale_fill_continuous(low='darkgreen', high='red') + ggplot2::xlim(0, 4)
 ```
 
+Looking at the tree, can you tell me which type of HOX genes ENSPTRP00000032491 and ENSPTRP00000032494 are? If you can, you've just used comparative phylogenetics (instead of BLAST) to identify unknown sequences! Some might say this is a much more scientifically sound way of identifying unknown sequences. YAY!!!!
+
+## Terminate your instance!!!
 
 This lab uses code from ANGUS2017: https://angus.readthedocs.io/en/2017/visualizing-blast-scores-with-RStudio.html
