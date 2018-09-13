@@ -4,7 +4,7 @@
 
     - Office: 434 Gregg Hall
     - Email: <mailto:Matthew.MacManes@unh.edu>
-    - Office hours: Tues/Fri 8-9AM in 189 Rudman, or by appt. Schedule at [http://genomebio.org/office-hours/](http://genomebio.org/office-hours/)
+    - Office hours: Tues/Fri 8-9AM in 434 Gregg, or by appt. Schedule at [http://genomebio.org/office-hours/](http://genomebio.org/office-hours/)
 
 1. [Slack](https://gen711s18.slack.com/)
 
@@ -20,4 +20,4 @@
     - **Week1** [Launch a Jetstream instance](jetstream.md)
     - **Week1** [Connect to a Jetstream instance](connect.md)
     - **Week2** [Command Line BLAST](lab1_blast.md)
-    - **Week3** [Use phylogentics to identify unknown sequences](phylogenetics.md)
+    - **Week3** [Use phylogenetics to identify unknown sequences](phylogenetics.md)

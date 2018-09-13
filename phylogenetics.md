@@ -6,7 +6,7 @@ During this lab, we will acquaint ourselves with the steps to making a tree. Yo
 
 1. Familiarize yourself with the software, how to execute it, how to visualize results.
 
-2. Regarding your dataset, tell me how some of these genes are related to their homologous copies.
+2. Identity the unknown sequences.
 
 
 > Step 1: Launch an instance on Jetstream. For this exercise, we will use a m1.medium instance.
@@ -32,7 +32,6 @@ sudo apt-get -y upgrade
 
 
 > So now that we have updates the software, lets see how to add new software. Same basic command, but instead of the `update` or `upgrade` command, we're using `install`. EASY!!
-> the 1st command tells the computer to look in a different place for updated software, this is needed because of R. We need a newer version than is standard.
 
 
 ```
@@ -52,7 +51,7 @@ echo ". $HOME/anaconda/install/etc/profile.d/conda.sh" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-> Make a conda environment, activate it, and install BLAST.
+> Make a conda environment, activate it, and install raxml and mafft. Make sure you know what these software packages are used for.
 
 ```
 conda create -y --name gen711
@@ -61,7 +60,7 @@ conda install -y -c bioconda raxml mafft
 ```
 
 
->Download some data, using this command. The 1st dataset is data is from an unknown species, the 2nd us the UniProt database, which is a well curated set of protein sequences from many different organisms. It's often a good 1st database to use for blast. Look at the 2 datasets using the comment `less`. Are these nucleotides of proteins?
+>Download some data, using this command. The 1st dataset is data is from an unknown species, the 2nd is the UniProt database, which is a well curated set of protein sequences from many different organisms. It's often a good 1st database to use for trying to identify sequences. Look at the 2 datasets using the comment `less`. Are these nucleotides or proteins?
 
 ```
 cd $HOME
@@ -80,14 +79,14 @@ cat query.pep results.pep > for_alignment.pep
 
 
 
->Align the proteins using mafft
+>Align the proteins using mafft. It would be great if you figured out what the command is doing.
 
 
 ```
 mafft --reorder --bl 80 --localpair --thread 6 for_alignment.pep > for.tree
 ```
 
-> Make a phylogeny
+> Make a phylogeny. It would be great if you figured out what the command is doing.
 ```
 raxmlHPC-PTHREADS -f a -m PROTGAMMAAUTO -T 6 -x 37644 -N 100 -n tree -s for.tree -p 35 -o "sp|P31269|HXA9_HUMAN"
 ```
@@ -116,7 +115,7 @@ sudo passwd $(whoami)
 printf "\n\n\n\n The web address for my RStudio Web server, the one I need to paste into my browser, is:  http://$(hostname):8787/ \n\n\n\n"
 ```
 
-#### in RStudio (not the terminal)
+### in RStudio (not the terminal)
 
 >Install packages.
 
