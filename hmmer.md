@@ -43,9 +43,6 @@ sudo apt-get -y upgrade
 sudo apt-get -y install build-essential python
 ```
 
-
-> Install LinuxBrew. Linux brew is another package manager, but for scientific software. We will use it basically every week!
-
 > Install Conda. Conda is another package manager, but for scientific software. We will use it basically every week!
 
 ```
@@ -66,7 +63,7 @@ conda install -y -c bioconda hmmer mafft blast
 ```
 
 
-> You will download the mystery dataset, a dataset that contains only sodium channels, and UNIPROT, a protein reference. Do you remember how to use the `curl` commands? FYI, I searched for, and downloaded the channel proteins from http://www.orthodb.org.
+> You will download [1] the mystery dataset which is a transcriptome from a mammal, [2] a dataset that contains only sodium channels, and [3] UNIPROT, a protein reference. Do you remember how to use the `curl` commands? FYI, I searched for, and downloaded the channel proteins from http://www.orthodb.org.
 
 ```
 curl -LO https://www.dropbox.com/s/tzreecjs5d5cj6l/channels.fasta
@@ -75,7 +72,7 @@ curl -LO ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgeba
 gzip -d uniprot_sprot.fasta.gz
 ```
 
-> we are going to run HMMER to find Channels in our mystery database. To do this, we 1st need to make a HMM, which takes as input, aligned protein sequences. We need to do an alignment of the channels proteins that you just downloaded.
+> we are going to run HMMER to find Channels in our mystery dataset. To do this, we 1st need to make a HMM, which takes as input, aligned protein sequences. We need to do an alignment of the channels proteins that you just downloaded.
 
 ```
 mafft --auto --thread 6 channels.fasta > channels.align.fasta
@@ -88,20 +85,40 @@ hmmbuild channels.hmm channels.align.fasta
 hmmsearch --cpu 6 -E 1e-5 --domtblout identified_channel_prots.out channels.hmm mystery.fa
 ```
 
-> look at `identified_channel_prots.out`
+> look at `identified_channel_prots.out`. Do you remmeber how to look at files?
+
+> We're doing something sorta fancy below...I'm searching the output file made by `hmmsearch` for the names of the genes it identified, then finding those genes in the mystery dataset, then putting only those sequences into a new file, called `maybe-mystery-channels.fasta`. The sequences in `maybe-mystery-channels.fasta` are our putative channel proteins.
 
 ```
 cat identified_channel_prots.out | cut -d " " -f1 | grep ENS | sort | uniq | grep --no-group-separator -A1 -w -f - mystery.fa | tee -a maybe-mystery-channels.fasta
 ```
 
-> check to see if the HMM did a good job, by blasting the proteins that HMMscan identified, to the UniProt database.
+> I'm don't the same thing here, but instead of pulling out the things that _are_ channel proteins from the mystery dataset, I'm pulling out the things that are _not_ channel proteins, hopefully. See the `-v` flag that I passed to `grep`? What does this do?
+
+```
+cat identified_channel_prots.out | cut -d " " -f1 | grep ENS | sort | uniq | grep -v --no-group-separator -A1 -w -f - mystery.fa | tee -a hopefully-not-channels.fasta
+```
+
+> Check to see if the HMM did a good job in finding the channel proteins, by blasting the proteins that HMMscan identified, to the UniProt database.
 
 ```
 makeblastdb -in uniprot_sprot.fasta -out uniprot -dbtype prot
 
 blastp -db uniprot -max_target_seqs 1 -query maybe-mystery-channels.fasta \
--outfmt '6 qseqid evalue stitle' -evalue 1e-10 -num_threads 6 -out blast.out
+-outfmt '6 qseqid evalue stitle' -evalue 1e-20 -num_threads 6 -out sequences-blast-thinks-are-channels_1.out
+```
+
+> (Don't do this, as it takes a long time) You would use the below command to find out if our HMM search had missed any channel proteins. I.e., if there are channel proteins in the `hopefully-not-channels.fasta` file. What do you predict will happen.
+
+
+```
+blastp -db uniprot -max_target_seqs 1 -query hopefully-not-channels.fasta \
+-outfmt '6 qseqid evalue stitle' -evalue 1e-20 -num_threads 6 -out sequences-blast-thinks-are-channels_2.out
 
 ```
 
-Look at the file, `blast.out`. Are their things in there that are not channel proteins (you might have to google)? Why? What can we do to make the results more accurate, if needed?
+> Look at the file, `sequences-blast-thinks-are-channels_1.out`. Are their things in the 1st file that are not channel proteins (you might have to google)? Why? What can we do to make the results more accurate, if needed?
+
+> What do you predict will be in the 2nd blast output file? Should there be anything?
+
+## Terminate your instance.
