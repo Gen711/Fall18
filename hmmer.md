@@ -1,4 +1,4 @@
-Lab3 : HMMER
+Lab4 : HMMER
 
 During this lab, we will acquaint ourselves with the the software package HMMER. Your objectives are:
 
