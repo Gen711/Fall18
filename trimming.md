@@ -108,6 +108,12 @@ fastqp -n 500000 reads.trim.Phred30.fastq 2> /dev/null | grep q50 | tee -a qual.
 ```
 
 
+> Download your results files to your local computer. Do this in a new tab if you are working on a Mac, or sign out from your instance if you are working on a PC.
+
+```
+rsync -av -e "ssh -i $HOME/jetkey" mmacmane@129.114.16.110:*zip ~/Desktop/
+```
+
 ## Optional challenge below... If you do no do this in the lab, remember to terminate your instance.
 
 > Run Jellyfish.
