@@ -2,7 +2,7 @@ Lab 5: Trimming
 --
 
 
-During this lab, we will acquaint ourselves with the the software packages FastQC and JellyFish. Your objectives are:
+During this lab, we will acquaint ourselves with the the software packages FastQP. You will use a m1.large machine.  Your objectives are:
 
 
 
@@ -10,9 +10,6 @@ During this lab, we will acquaint ourselves with the the software packages Fast
 
 2. Regarding your dataset. Characterize sequence quality.
 
-The FastQC manual: <a href="http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc">http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc</a>
-
-The JellyFish manual: <a href="ftp://ftp.genome.umd.edu/pub/jellyfish/JellyfishUserGuide.pdf">ftp://ftp.genome.umd.edu/pub/jellyfish/JellyfishUserGuide.pdf</a>
 
 > Step 1: Launch an instance on Jetstream. For this exercise, we will use a m1.medium instance.
 
@@ -87,7 +84,7 @@ curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 >paste the below lines together as 1 command. you will need to change the numbers and run 2 more times after this 1st time.
 
 ```
-trimmomatic SE -threads 10 \
+trimmomatic SE -threads 6 \
 1.subsamp_1.fastq \
 reads.trim.Phred30.fastq \
 ILLUMINACLIP:/home/mmacmane/anaconda/install/envs/gen711/share/trimmomatic-0.38-1/adapters/TruSeq3-PE.fa:2:30:10 \
@@ -101,10 +98,10 @@ MINLEN:25
 
 
 ```
-fastqp -n 500000 1.subsamp_1.fastq 2> /dev/null | grep q50 | tee -a qual.P0.txt
-fastqp -n 500000 reads.trim.Phred2.fastq 2> /dev/null | grep q50 | tee -a qual.P2.txt
-fastqp -n 500000 reads.trim.Phred10.fastq 2> /dev/null | grep q50 | tee -a qual.P10.txt
-fastqp -n 500000 reads.trim.Phred30.fastq 2> /dev/null | grep q50 | tee -a qual.P30.txt
+fastqp -n 500000 1.subsamp_1.fastq -o notrim 2> /dev/null | grep q50 | tee -a qual.P0.txt
+fastqp -n 500000 reads.trim.Phred2.fastq -o p2trim 2> /dev/null | grep q50 | tee -a qual.P2.txt
+fastqp -n 500000 reads.trim.Phred10.fastq -o p10trim 2> /dev/null | grep q50 | tee -a qual.P10.txt
+fastqp -n 500000 reads.trim.Phred30.fastq -o p30trim 2> /dev/null | grep q50 | tee -a qual.P30.txt
 ```
 
 
