@@ -22,3 +22,4 @@
     - **Week2** [Command Line BLAST](lab1_blast.md)
     - **Week3** [Use phylogenetics to identify unknown sequences](phylogenetics.md)
     - **Week4** [Use a HMM to identify unknown sequences](hmmer.md)
+    - **Week5** [Trimming fastQ files](trimming.md)

@@ -41,20 +41,20 @@ sudo apt-get -y upgrade
 
 
 ```
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 sudo apt-get update
-sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip gdebi-core r-base
+sudo apt-get -y install ruby build-essential python python-pip gdebi-core r-base
 ```
 
 
-> Install LinuxBrew like you have every other week!
+> Install Conda like you have every other week. refer back to last weeks lab.
 
 
-> Install gcc (a compiler), jellyfish (to do count kmers) and trimmomatic (to trim reads)
+> Make a conda environment, activate it, and install raxml and mafft. Make sure you know what these software packages are used for.
 
 ```
-brew install gcc jellyfish trimmomatic
-pip install fastqp
+conda create -y --name gen711
+conda activate gen711
+conda install -y -c bioconda trimmomatic fastqp jellyfish
 ```
 
 
