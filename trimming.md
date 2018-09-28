@@ -78,7 +78,7 @@ curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 
 ---
 
-> Do 3 different trimming levels - 2, 10, 30. This one is trimming at a Phred score of 30 (BAD!!!) When you run your commands, you'll need to change the numbers in `LEADING:30` `TRAILING:30` `SLIDINGWINDOW:4:30` and `reads.trim.Phred30.fastq` from 30 to whatever trimming level you are using. Use a text editor (not Word) to do this.
+> Do 3 different trimming levels - 2, 10, 30. This one is trimming at a Phred score of 30 (BAD!!!) When you run your commands, you'll need to change the numbers in `LEADING:30` `TRAILING:30` `SLIDINGWINDOW:4:30` and `reads.trim.Phred30.fastq` from 30 to whatever trimming level you are using. Use a text editor (not Word) to do this. BBEdit on a mac, or TextEdit on PC are good choices.
 
 
 >paste the below lines together as 1 command. you will need to change the numbers and run 2 more times after this 1st time.
@@ -87,7 +87,7 @@ curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 trimmomatic SE -threads 6 \
 1.subsamp_1.fastq \
 reads.trim.Phred30.fastq \
-ILLUMINACLIP:/home/mmacmane/anaconda/install/envs/gen711/share/trimmomatic-0.38-1/adapters/TruSeq3-PE.fa:2:30:10 \
+ILLUMINACLIP:$HOME/anaconda/install/envs/gen711/share/trimmomatic-0.38-1/adapters/TruSeq3-PE.fa:2:30:10 \
 SLIDINGWINDOW:4:30 \
 LEADING:30 \
 TRAILING:30 \
