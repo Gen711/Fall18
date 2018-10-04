@@ -1,4 +1,4 @@
-## Read Mapping
+## Week 6: Read Mapping
 
 
 During this lab, we will acquaint ourselves with read mapping. You will:
@@ -17,56 +17,42 @@ The STAR manual: https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pd
 
 
 
-> Step 1: Launch an instance on Jetstream. For this exercise, we will use a _m1.xlarge_ instance.
+> Step 1: Launch an instance on Jetstream. For this exercise, we will use a _m1.large_ instance.
 
 ```
 ssh -i jetkey username@xxx.xxx.xxx.xxx
 ```
 
-> The machine you are using is Linux Ubuntu: Ubuntu is an operating system you can use (I do) on your laptop or desktop. One of the nice things about this OS is the ability to update the software, easily.  The command `sudo apt-get update` checks a server for updates to existing software.
+> Update and upgrade your computer like you have every other week. Yes, you may use notes and pervious labs..
 
 
+> Install the following...
 ```
-sudo apt-get update
-```
-
-> The upgrade command actually installs any of the required updates.
-
-```
-sudo apt-get -y upgrade
-```
-
-> OK, what are these commands?  `sudo` is the command that tells the computer that we have admin privileges. Try running the commands without the sudo -- it will complain that you don't have admin privileges or something like that. *Careful here, using sudo means that you can do something really bad to your own computer -- like delete everything*, so use with caution. It's not a big worry when using Jetstream, as this is a virtual machine- fixing your worst mistake is as easy as just terminating the instance and restarting.
-
-
-> So now that we have updates the software, lets see how to add new software. Same basic command, but instead of the `update` or `upgrade` command, we're using `install`. EASY!!
-> the 1st command tells the computer to look in a different place for updated software, this is needed because of R. We need a newer version than is standard.
-
-
-```
-sudo apt-get -y install ruby build-essential python python-pip
+sudo apt-get -y install build-essential python python-pip
 ```
 
 
-> Install LinuxBrew like you have every other week!
+> Install Conda like you have every other week!
 
 
-> Install the following software packages: `gcc samtools bedtools rna-star bcftools vcftools sratoolkit`
+> Install the following software packages via Conda like you have every other week: `samtools bedtools star bcftools vcftools sra-tools`
 
 
 >Download data
 
 ```bash
-curl -LO ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz
-curl -LO ftp://ftp.ensemblgenomes.org/pub/release-37/metazoa/gtf/anopheles_gambiae/Anopheles_gambiae.AgamP4.37.chr.gtf.gz
-prefetch SRR1727555
+cd
+curl -LO ftp://ftp.ensemblgenomes.org/pub/metazoa/release-40/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz
+curl -LO ftp://ftp.ensemblgenomes.org/pub/metazoa/release-40/gff3/anopheles_gambiae/Anopheles_gambiae.AgamP4.40.gff3.gz
+curl -LO ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR172/005/SRR1727555/SRR1727555_1.fastq.gz
+curl -LO ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR172/005/SRR1727555/SRR1727555_2.fastq.gz
+prefetch -vv --progress 2 SRR1727555
+gzip -d *gz
 ```
 
->Convert SRA files to fastQ format and un-compress other files.
-
-```bash
+> split fastQ readFilesIn
+```
 fastq-dump --split-files --split-spot ncbi/public/sra/SRR1727555.sra
-gzip -d Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz Anopheles_gambiae.AgamP4.37.chr.gtf.gz
 ```
 
 
@@ -75,19 +61,17 @@ gzip -d Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz Anopheles_gambiae.AgamP4.
 ```bash
 mkdir bad_mosquito
 
-STAR --runMode genomeGenerate --genomeDir bad_mosquito \
---genomeFastaFiles Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa \
---runThreadN 24 \
---genomeSAindexNbases 15 \
---sjdbGTFfile Anopheles_gambiae.AgamP4.37.chr.gtf
+STAR --runMode genomeGenerate --genomeDir $HOME/bad_mosquito \
+--genomeFastaFiles $HOME/Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa \
+--runThreadN 24
 ```
 
 >Map reads!! (10 minutes). You're mapping RNA data, from a mosquito antenna to the mosquito genome.
 
 ```bash
 STAR --runMode alignReads \
---genomeDir bad_mosquito \
---readFilesIn SRR1727555_1.fastq SRR1727555_2.fastq \
+--genomeDir bad_mosquito/ \
+--readFilesIn $HOME/SRR1727555_1.fastq $HOME/SRR1727555_2.fastq \
 --runThreadN 24 \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix squish
