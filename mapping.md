@@ -71,11 +71,15 @@ STAR --runMode alignReads \
 --outFileNamePrefix monarch_mapping_
 ```
 
-> Let's find SNPs, but just on the 2L chromosome.
+> Let's find SNPs, but just on the largest scaffold.
 
 ```bash
+samtools view -h -t  $HOME/Danaus_plexippus.Dpv3.dna.toplevel.fa --threads 12 monarch_mapping_Aligned.sortedByCoord.out.bam \
+| awk '$1 ~ "@" || $3=="DPSCF300001"' \
+| samtools view -h -t  $HOME/Danaus_plexippus.Dpv3.dna.toplevel.fa --threads 12 -1 -o filtered.bam -
 
-bcftools mpileup --skip-indels -f $HOME/Danaus_plexippus.Dpv3.dna.toplevel.fa squished5Aligned.sortedByCoord.out.bam | \
+
+bcftools mpileup --skip-indels -f $HOME/Danaus_plexippus.Dpv3.dna.toplevel.fa filtered.bam | \
 bcftools view -O v --threads 24 -v snps - > variants.vcf
 ```
 
