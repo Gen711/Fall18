@@ -42,27 +42,21 @@ sudo apt-get -y install build-essential python python-pip
 
 ```bash
 cd
-curl -LO ftp://ftp.ensemblgenomes.org/pub/metazoa/release-40/fasta/anopheles_gambiae/dna/Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa.gz
-curl -LO ftp://ftp.ensemblgenomes.org/pub/metazoa/release-40/gff3/anopheles_gambiae/Anopheles_gambiae.AgamP4.40.gff3.gz
-curl -LO ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR172/005/SRR1727555/SRR1727555_1.fastq.gz
-curl -LO ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR172/005/SRR1727555/SRR1727555_2.fastq.gz
-prefetch -vv --progress 2 SRR1727555
+curl -LO ftp://ftp.ensemblgenomes.org/pub/metazoa/release-40/fasta/danaus_plexippus/dna/Danaus_plexippus.Dpv3.dna.toplevel.fa.gz
+curl -LO https://s3.amazonaws.com/gen711/SRR585568_R1.fastq.gz
+curl -LO https://s3.amazonaws.com/gen711/SRR585568_R2.fastq.gz
 gzip -d *gz
-```
 
-> split fastQ readFilesIn
-```
-fastq-dump --split-files --split-spot ncbi/public/sra/SRR1727555.sra
 ```
 
 
 > Index the genome
 
 ```bash
-mkdir bad_mosquito
+mkdir butterfly
 
-STAR --runMode genomeGenerate --genomeDir $HOME/bad_mosquito \
---genomeFastaFiles $HOME/Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa \
+STAR --runMode genomeGenerate --genomeDir $HOME/butterfly \
+--genomeFastaFiles $HOME/Danaus_plexippus.Dpv3.dna.toplevel.fa \
 --runThreadN 24
 ```
 
@@ -70,37 +64,19 @@ STAR --runMode genomeGenerate --genomeDir $HOME/bad_mosquito \
 
 ```bash
 STAR --runMode alignReads \
---genomeDir bad_mosquito/ \
---readFilesIn $HOME/SRR1727555_1.fastq $HOME/SRR1727555_2.fastq \
+--genomeDir butterfly/ \
+--readFilesIn $HOME/SRR585568_R1.fastq $HOME/SRR585568_R1.fastq \
 --runThreadN 24 \
 --outSAMtype BAM SortedByCoordinate \
---outFileNamePrefix squish
-```
-
->Look at BAM file.
-
-
-```bash
-#Take a quick general look.
-
-samtools index -@ 24 squishAligned.sortedByCoord.out.bam
-
-samtools view -h -t Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa --threads 24 squishAligned.sortedByCoord.out.bam | less -S
-
-#use the spacebar to scan quickly
-
-samtools tview squishAligned.sortedByCoord.out.bam Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa
+--outFileNamePrefix monarch_mapping_
 ```
 
 > Let's find SNPs, but just on the 2L chromosome.
 
 ```bash
-samtools view -h -t Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa --threads 12 squishAligned.sortedByCoord.out.bam \
-| awk '$1 ~ "@" || $3=="2L"' \
-| samtools view -h -t Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa --threads 12 -1 -o 2L.bam -
 
-samtools mpileup --skip-indels -A -u -t DP -f Anopheles_gambiae.AgamP4.dna_rm.toplevel.fa 2L.bam | \
-    bcftools view -O v --threads 24 -v snps - > variants.vcf
+bcftools mpileup --skip-indels -f $HOME/Danaus_plexippus.Dpv3.dna.toplevel.fa squished5Aligned.sortedByCoord.out.bam | \
+bcftools view -O v --threads 24 -v snps - > variants.vcf
 ```
 
 > look at your vcf file. If we had mapped many individuals, we could calculate many interesting population genetics stats using the `vcftools` package.
