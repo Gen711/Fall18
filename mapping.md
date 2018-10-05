@@ -5,8 +5,6 @@ During this lab, we will acquaint ourselves with read mapping. You will:
 
 1. Install software and download data
 
-2. Use sra-toolkit to extract fastQ reads
-
 3. Map reads to dataset
 
 4. look at mapping quality
@@ -17,7 +15,7 @@ The STAR manual: https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pd
 
 
 
-> Step 1: Launch an instance on Jetstream. For this exercise, we will use a _m1.large_ instance.
+> Step 1: Launch an instance on Jetstream. For this exercise, we will use a _m1.Xlarge_ instance.
 
 ```
 ssh -i jetkey username@xxx.xxx.xxx.xxx
@@ -28,7 +26,7 @@ ssh -i jetkey username@xxx.xxx.xxx.xxx
 
 > Install the following...
 ```
-sudo apt-get -y install build-essential python python-pip
+sudo apt-get -y install build-essential python
 ```
 
 
@@ -65,8 +63,8 @@ STAR --runMode genomeGenerate --genomeDir $HOME/butterfly \
 ```bash
 STAR --runMode alignReads \
 --genomeDir butterfly/ \
---readFilesIn $HOME/SRR585568_R1.fastq $HOME/SRR585568_R1.fastq \
---runThreadN 24 \
+--readFilesIn $HOME/SRR585568_R1.fastq $HOME/SRR585568_R2.fastq \
+--runThreadN 18 \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix monarch_mapping_
 ```
