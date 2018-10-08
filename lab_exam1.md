@@ -8,7 +8,7 @@ Exam 1 #1
 
 
 
-3. Install blast using linuxbrew, write the output of `blastp -version` for full credit ___________________ 5 points. Note that I'm not suggesting you use `blastp` below. Instead, I'm just trying to verify that you're installing blast correctly.
+3. Install blast using Conda, write the output of `blastp -version` for full credit ___________________ 5 points. Note that I'm not suggesting you use `blastp` below. Instead, I'm just trying to verify that you're installing blast correctly.
 
 
 4. Download the query _________ 2 points
