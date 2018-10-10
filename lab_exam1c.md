@@ -5,7 +5,7 @@ Another lab 1 Practice
 1. Launch a medium instance.  _______ 2 points
 
 
-2. Update your machine and install the basic software using ``apt-get``. _________ 2 points
+2. Update your machine and install the basic software using ``apt-get`` _________ 2 points.
 
 
 
