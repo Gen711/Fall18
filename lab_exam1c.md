@@ -20,7 +20,7 @@ https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 
 ---
 
-5.  Trim each dataset at a PHRED score of 5. YOu will need to run the program twice. Write out the command you use, below for one of them.
+5.  Trim each dataset at a PHRED score of 5. You will need to run the program twice. Write out the command you use, below for one of them.
 
 6. What percentage of the reads remain after trimming for each dataset? From this, which dataset is likely of higher quality and why?
 
