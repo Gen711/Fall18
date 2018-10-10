@@ -9,7 +9,7 @@ Lab 5: Trimming
 
 
 
-3. Install blast using Conda, write the output of `trimmomatic -version` for full credit ___________________ 5 points.
+3. Install trimmomatic using Conda, write the output of `trimmomatic -version` for full credit ___________________ 5 points.
 
 4. Download the following two datasets.
 
