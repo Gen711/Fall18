@@ -24,7 +24,7 @@
     - **Week4** [Use a HMM to identify unknown sequences](hmmer.md)
     - **Week5** [Trimming fastQ files](trimming.md)
     - **Week6** [Mapping read data!!!](mapping.md)
-    - **Practice Exam1 [A](mock_exam1.md)
+    - **Practice Exam1 [A]: I am deleting A as it was too hard. Focus on B-E
     - **Practice Exam1 [B](lab_exam1.md)
     - **Practice Exam1 [C](lab_exam1a.md)
     - **Practice Exam1 [D](lab_exam1b.md)
