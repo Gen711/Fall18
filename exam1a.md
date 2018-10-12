@@ -15,7 +15,7 @@ Exam 1 A
 
 ```
 https://s3.amazonaws.com/mike_spider/spider7L_up.1.fq
-https://s3.amazonaws.com/gen711/
+https://s3.amazonaws.com/gen711/MBE-MDM-89.1.fq.gz
 
 
 ```
