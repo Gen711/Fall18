@@ -30,3 +30,4 @@
     - **Practice Exam1 [D](lab_exam1b.md)
     - **Practice Exam1 [E](lab_exam1c.md)
     - **[Exam 1 section 1](exam1a.md)
+    - **[Exam 1 section 2](exam1b.md)
