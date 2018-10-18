@@ -20,41 +20,33 @@ Skewer: http://www.biomedcentral.com/1471-2105/15/182
 Seqtk: https://github.com/lh3/seqtk
 
 
-> Step 1: Launch, For this exercise, we will use a m1.xlarge instance.
+> Step 1: Launch, For this exercise, we will use a m1.large instance.
 
 
 
 > Install other software, including RStudio
 
 ```
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get -y --allow-unauthenticated install ruby build-essential python python-pip gdebi-core r-base
+sudo apt-get -y install  build-essential python python-pip gdebi-core r-base
 curl -LO  https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
 sudo gdebi -n rstudio-server-1.0.143-amd64.deb
 ```
-> Install LinuxBrew, and then the following software.
+> Install Conda, and then the following software.
 
 ```
-gcc jellyfish skewer seqtk
+khmer jellyfish trimmomatic seqtk
 
 ```
 
-> Install Khmer
+> Download data
+
 
 ```
-pip install khmer
-```
-> Download data and a file with the Illumina adapters, ``TruSeq3-PE.fa``
-
-::
-```
-curl -LO https://s3.amazonaws.com/gen711/TruSeq3-PE.fa
-curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R1.PF.fastq.gz > kidney.1.fq.gz &
-curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R2.PF.fastq.gz > kidney.2.fq.gz
+cd
+curl -L https://s3.amazonaws.com/Mc_Transcriptome/Thomas_McBr1_R1.PF.fastq.gz > kidney.1.fq.gz
 ```
 
-> Merge --> Trim low quality bases and adapters from dataset  --> count kmers --> make a histogram. Normalize in the 1nd command. Make sure you know what is going on here!
+> Merge --> Trim low quality bases and adapters from dataset  --> count kmers --> make a histogram. Normalize in the 2nd command. Make sure you know what is going on here!
 
 ::
 
@@ -66,8 +58,10 @@ norm=30
 
 #paste the below lines together as 1 command
 
-seqtk mergepe kidney.1.fq.gz kidney.2.fq.gz \
-| skewer -l 25 -m pe --mean-quality $trim --end-quality $trim -t 8 -x $HOME/TruSeq3-PE.fa - -1 \
+
+trimmomatic SE -threads 10 kidney.1.fq.gz /dev/stdout \
+ILLUMINACLIP:$HOME/anaconda/install/envs/gen711/share/trimmomatic-0.38-1/adapters/TruSeq3-PE.fa:2:30:10 \
+SLIDINGWINDOW:4:2 LEADING:2 TRAILING:2 MINLEN:25 \
 | jellyfish count -m 25 -s 700M -t 8 -C -o /dev/stdout /dev/stdin \
 | jellyfish histo /dev/stdin -o trimmed.no.normalize.histo
 
@@ -75,14 +69,15 @@ seqtk mergepe kidney.1.fq.gz kidney.2.fq.gz \
 
 #paste the below lines together as 1 command
 
-seqtk mergepe kidney.1.fq.gz kidney.2.fq.gz \
-| skewer -l 25 -m pe --mean-quality $trim --end-quality $trim -t 8 -x $HOME/TruSeq3-PE.fa - -1 \
-| normalize-by-median.py --max-memory-usage 4e9 -C $norm -o - - \
+trimmomatic SE -threads 10 kidney.1.fq.gz /dev/stdout \
+ILLUMINACLIP:$HOME/anaconda/install/envs/gen711/share/trimmomatic-0.38-1/adapters/TruSeq3-PE.fa:2:30:10 \
+SLIDINGWINDOW:4:2 LEADING:2 TRAILING:2 MINLEN:25 \
+| normalize-by-median.py --max-memory-usage 1e9 -C $norm -o - - \
 | jellyfish count -m 25 -s 700M -t 8 -C -o /dev/stdout /dev/stdin \
 | jellyfish histo /dev/stdin -o trimmed.yes.normalize.histo
 ```
 
-> Now, you ahve 2 files: `trimmed.yes.normalize.histo` and `trimmed.no.normalize.histo`. these contain the kmer frequency data. The 1st column is the abundance, the 2nd column is the number of 25mers that have that abundance. Can you tell me how many unique kmers there are in each dataset? Does this make sense?  
+> Now, you have 2 files: `trimmed.yes.normalize.histo` and `trimmed.no.normalize.histo`. these contain the kmer frequency data. The 1st column is the abundance, the 2nd column is the number of 25mers that have that abundance. Can you tell me how many unique kmers there are in each dataset? Does this make sense?  
 
 
 > Launch RStudio, remember you have to make a new password, and find the web address. See lab 1 for details.
