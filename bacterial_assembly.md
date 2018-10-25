@@ -20,6 +20,7 @@ canu quast spades
 > Download PacBio Data. This is 25x coverage of an E. coli genome.
 
 ```
+cd 
 curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq
 ```
 
