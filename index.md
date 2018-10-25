@@ -32,3 +32,4 @@
     - **[Exam 1 section 1](exam1a.md)
     - **[Exam 1 section 2](exam1b.md)
     - **Week8** [kmers](khmer.md)
+    - **Week9** [genome assembly](bacterial_assembly.md)

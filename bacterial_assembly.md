@@ -9,10 +9,10 @@ Lab 9: Bacterial Genome Assembly
 sudo apt-get -y install ruby build-essential python python-pip default-jre
 ```
 
->Install LinuxBrew, then the following software..
+>Install Conda, then the following software..
 
 ```
-brew install gcc gnuplot canu quast spades
+canu quast spades matplotlib gnuplot
 ```
 
 > Install a python plotting tool
