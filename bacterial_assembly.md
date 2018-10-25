@@ -12,14 +12,9 @@ sudo apt-get -y install ruby build-essential python python-pip default-jre
 >Install Conda, then the following software..
 
 ```
-canu quast spades matplotlib gnuplot
+canu quast spades
 ```
 
-> Install a python plotting tool
-
-```
-pip install matplotlib
-```
 
 
 > Download PacBio Data. This is 25x coverage of an E. coli genome.
