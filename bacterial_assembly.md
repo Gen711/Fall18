@@ -23,6 +23,7 @@ canu quast spades
 ```
 cd
 curl -L -o pacbio.fastq http://gembox.cbcb.umd.edu/mhap/raw/ecoli_p6_25x.filtered.fastq
+curl -LO ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
 ```
 
 
@@ -50,6 +51,7 @@ canu \
  > Download an Illumina dataset for E. coli, along with a reference genome
 
  ```
+ cd
  curl -LO https://s3.amazonaws.com/gen711/ecoli_data.tar.gz
  tar -zxf ecoli_data.tar.gz
  curl -LO ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
@@ -76,7 +78,7 @@ quast ecoli-pacbio/ecoli.contigs.fasta \
 
 ### Everybody do this section
 
-> look at report, found at `quast_output/report.txt`
+> look at report, found at `quast_output/report.txt`. How many pieces (contigs) is the genome in? How many should it be, ideally?
 
 > Download the full report, with pretty graphics, optional.
 ```
