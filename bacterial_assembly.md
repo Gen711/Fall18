@@ -16,7 +16,7 @@ canu quast spades
 ```
 
 
-### If your last name begins with A-L, do this section. See below for M-Z
+# If your last name begins with A-L, do this section. See below for M-Z
 
 > Download PacBio Data. This is 25x coverage of an E. coli genome.
 
@@ -45,7 +45,7 @@ canu \
          -o quast_output --threads 24 --gene-finding
  ```
 
- ### If your last name begins with M-Z, do this section.
+# Last names M-Z, do this section
 
 
  > Download an Illumina dataset for E. coli, along with a reference genome
@@ -78,7 +78,7 @@ quast ecoli-pacbio/ecoli.contigs.fasta \
 
 ### Everybody do this section
 
-> look at report, found at `quast_output/report.txt`. How many pieces (contigs) is the genome in? How many should it be, ideally?
+> look at report, found at `quast_output/report.txt`. How many pieces (contigs) is the genome in? How many should it be, ideally? How many pieces did the other strategy have as a result?
 
 > Download the full report, with pretty graphics, optional.
 ```
