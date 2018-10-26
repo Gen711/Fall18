@@ -40,7 +40,7 @@ canu \
  > compare the genomes, using quast
 
  ```
- quast Ecoli_all_data/scaffolds.fasta \
+ quast ecoli-pacbio/ecoli.contigs.fasta \
          -R GCF_000005845.2_ASM584v2_genomic.fna.gz \
          -o quast_output --threads 24 --gene-finding
  ```
@@ -71,7 +71,7 @@ canu \
 > compare the genomes, using quast
 
 ```
-quast ecoli-pacbio/ecoli.contigs.fasta \
+quast Ecoli_all_data/scaffolds.fasta \
         -R GCF_000005845.2_ASM584v2_genomic.fna.gz \
         -o quast_output --threads 24 --gene-finding
 ```
