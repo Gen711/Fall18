@@ -76,7 +76,7 @@ quast Ecoli_all_data/scaffolds.fasta \
         -o quast_output --threads 24 --gene-finding
 ```
 
-### Everybody do this section
+# Everybody do this section
 
 > look at report, found at `quast_output/report.txt`. How many pieces (contigs) is the genome in? How many should it be, ideally? How many pieces did the other strategy have as a result?
 
