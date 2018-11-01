@@ -45,6 +45,8 @@ sed -i  's_ubuntu_$(whoami)_g' $HOME/Oyster_River_Protocol/software/config.ini
 > Assemble using the ORP
 
 ```
+source activate orp_v2
+
 $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=50 \
 CPU=24 \
