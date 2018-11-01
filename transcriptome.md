@@ -8,19 +8,7 @@ See http://oyster-river-protocol.readthedocs.io
 > Update, upgrade, install...
 
 ```
-sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ruby build-essential mcl python python-pip
-```
-
->Install python modules
-
-```
-pip install cvxopt numpy biopython scipy
-```
-
->Install LinuxBrew, then the following software..
-
-```
-brew install gcc python metis parallel tmux
+sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install build-essential git
 ```
 
 > Install the Oyster River Software
@@ -29,7 +17,6 @@ brew install gcc python metis parallel tmux
 git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
 make
-cd
 ```
 ## Make sure to put the things it says to, in `~/.profile`, using `nano`. Paste them in at the bottom of the file
 
@@ -40,29 +27,19 @@ source ~/.profile
 > Download Illumina RNAseq data, and subsample it.
 
 ```
+cd
 curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 curl -LO https://s3.amazonaws.com/gen711/1.subsamp_2.fastq
 seqtk sample -s23 1.subsamp_1.fastq 100000 > reads.1.fq
 seqtk sample -s23 1.subsamp_2.fastq 100000 > reads.2.fq
 ```
 
-> Install BUSCO
+> Specify locations to BUSCO databases
 
 ```
 ### Download databases
 
-mkdir Oyster_River_Protocol/busco_dbs && cd Oyster_River_Protocol/busco_dbs
-
-# Eukaryota
-curl -LO http://busco.ezlab.org/v2/datasets/eukaryota_odb9.tar.gz
-
-tar -zxf eukaryota_odb9.tar.gz
-cd
-
-### Move and edit config file (change everyplace it says `mmacmane` to your user name)
-
-mv Oyster_River_Protocol/software/config.ini Oyster_River_Protocol/software/busco/config/config.ini
-nano Oyster_River_Protocol/software/busco/config/config.ini
+sed -i  's_ubuntu_$(whoami)_g' $HOME/Oyster_River_Protocol/software/config.ini
 ```
 
 > Assemble using the ORP
@@ -71,8 +48,9 @@ nano Oyster_River_Protocol/software/busco/config/config.ini
 $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=50 \
 CPU=24 \
-READ1=reads.1.fq \
-READ2=reads.2.fq \
+STRAND=RF \
+READ1=1.subsamp_1.fastq \
+READ2=1.subsamp_2.fastq \
 RUNOUT=smallassembly
  ```
 # Terminate your instance

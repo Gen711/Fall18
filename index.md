@@ -33,3 +33,4 @@
     - **[Exam 1 section 2](exam1b.md)
     - **Week8** [kmers](khmer.md)
     - **Week9** [genome assembly](bacterial_assembly.md)
+    - **Week10** [transcriptome assembly](transcriptome.md)
