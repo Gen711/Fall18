@@ -18,7 +18,7 @@ git clone https://github.com/macmanes-lab/Oyster_River_Protocol.git
 cd Oyster_River_Protocol
 make
 ```
-## Make sure to put the things it says to, in `~/.profile`, using `nano`. Paste them in at the bottom of the file
+## Type
 
 ```
 source ~/.profile
