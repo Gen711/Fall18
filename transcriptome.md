@@ -51,8 +51,8 @@ $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=50 \
 CPU=24 \
 STRAND=RF \
-READ1=1.subsamp_1.fastq \
-READ2=1.subsamp_2.fastq \
+READ1=reads.1.fq \
+READ2=reads.2.fq \
 RUNOUT=smallassembly
  ```
 # Terminate your instance
