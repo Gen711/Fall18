@@ -39,7 +39,7 @@ seqtk sample -s23 1.subsamp_2.fastq 100000 > reads.2.fq
 > Specify locations to BUSCO databases
 
 ```
-### Download databases
+### Edit `config.ini`
 
 sed -i  "s_ubuntu_$(whoami)_g" $HOME/Oyster_River_Protocol/software/config.ini
 ```
