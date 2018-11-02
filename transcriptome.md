@@ -28,6 +28,8 @@ source ~/.profile
 
 ```
 cd
+source activate orp_v2
+
 curl -LO https://s3.amazonaws.com/gen711/1.subsamp_1.fastq
 curl -LO https://s3.amazonaws.com/gen711/1.subsamp_2.fastq
 seqtk sample -s23 1.subsamp_1.fastq 100000 > reads.1.fq
@@ -45,8 +47,6 @@ sed -i  "s_ubuntu_$(whoami)_g" $HOME/Oyster_River_Protocol/software/config.ini
 > Assemble using the ORP
 
 ```
-source activate orp_v2
-
 $HOME/Oyster_River_Protocol/oyster.mk main \
 MEM=50 \
 CPU=24 \
