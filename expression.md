@@ -49,7 +49,7 @@ fastq-dump --split-files --split-spot SRR1575395.sra
 mkdir $HOME/quant
 cd $HOME/quant
 kallisto index -i transcripts.idx $HOME/data/brain.final.fasta
-kallisto quant -t 10 -i transcripts.idx -o kallisto_output -b 100 $HOME/data/SRR1575395_1.fastq $HOME/data/SRR1575395_2.fastq
+kallisto quant -t 10 -i transcripts.idx -o kallisto_output $HOME/data/SRR1575395_1.fastq $HOME/data/SRR1575395_2.fastq
 ```
 
 
