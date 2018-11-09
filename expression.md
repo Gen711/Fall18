@@ -21,7 +21,7 @@ During this lab, we will acquaint ourselves with how to estimate gene expression
 > Install bashplotlib
 
 ```
-pip install bashplotlib
+conda install -y -c auto bashplotlib
 ```
 
 
@@ -76,7 +76,7 @@ paste salmon.quant kallisto.quant  | column -s $'\t' -t | awk '{print $1 "\t" ($
 > histogram
 
 ```bash
-hist  -p '#' -c red <(cat expression.diffs)
+hist  -p '#' -c red <(awk '{print $2}' expression.diffs)
 ```
 
 =======================
