@@ -68,15 +68,15 @@ salmon quant -p 10 -i transcripts_index --seqBias --gcBias -l a \
 
 ```bash
 cd $HOME/quant
-cat salmon_output/quant.sf | sed -e 1,11d | sort -nk1 > salmon.quant
+cat salmon_output/quant.sf | sed -e 1d | sort -nk1 > salmon.quant
 cat kallisto_output/abundance.tsv | sed -e 1d | sort -nk1 > kallisto.quant
-paste salmon.quant kallisto.quant  | column -s $'\t' -t | awk '{print $1 "\t" ($3-$9)/((($3+$9)/2)+.001)}' > expression.diffs
+paste salmon.quant kallisto.quant  | column -s $'\t' -t | awk '{print $1 "\t" ($4-$10)/((($4+$10)/2)+.001)}' | awk '{print $2}' > expression.diffs
 ```
 
 > histogram
 
 ```bash
-hist  -p '#' -c red <(awk '{print $2}' expression.diffs)
+hist -c blue --file expression.diffs -b 50
 ```
 
 =======================
