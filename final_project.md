@@ -8,8 +8,8 @@ Here is a list of tips for your project.
 1. Likely everybody doing a transcriptome assembly will need to fix the headers in your fastQ files _before_ running in the ORP. This is how
 
 ```
-sed -i -e 's_ __' -e 's_ _/1 _' ERR1016675_1.fastq
-sed -i -e 's_ __' -e 's_ _/2 _' ERR1016675_2.fastq
+sed -i 's_ _/1 _' file.1.fq
+sed -i 's_ _/2 _' file.2.fq
 ```
 
 2. Most people will not need to subsample their read datasets. However, if you have more than
@@ -20,4 +20,4 @@ seqtk sample -s2343 SRRNUMBER_1.fastq.gz 20000000 > reads.1.fq
 seqtk sample -s2343 SRRNUMBER_2.fastq.gz 20000000 > reads.2.fq
 ```
 
-3. Send me screenshots or text files of error messages. 
+3. Send me screenshots or text files of error messages.
