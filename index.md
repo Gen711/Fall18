@@ -35,3 +35,4 @@
     - **Week9** [genome assembly](bacterial_assembly.md)
     - **Week10** [transcriptome assembly](transcriptome.md)
     - **Week11** [gene expression](expression.md)
+    - **Week12** [final project tips](final_project.md)
