@@ -5,7 +5,7 @@ Here is a list of tips for your project.
 
 0. Use tmux and suspend your instance when not in use. This will stop us from "paying" for the machine, but will save your work.
 
-1. Likely everybody doing a transcriptome assembly will need to fix the headers in your fastQ files _before_ running in the ORP. This is how
+1. Likely everybody doing a transcriptome assembly will need to fix the headers in your fastQ files _before_ running in the ORP. This is how. (you'll need to uncompress the files 1st.)
 
 ```
 sed -i 's_ _/1 _' file.1.fq
@@ -37,4 +37,4 @@ tmux at -t gen711
 
 ```
 
-5. Note that if you are using tmux, and you close/restart your computer, you will be disconnected from your instance. Its ok!! Just reconnect to your instance, then re-attach to your existing tmux window, and you will back to where you left off. 
+5. Note that if you are using tmux, and you close/restart your computer, you will be disconnected from your instance. Its ok!! Just reconnect to your instance, then re-attach to your existing tmux window, and you will back to where you left off.
